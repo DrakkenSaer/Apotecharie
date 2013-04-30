@@ -1,0 +1,12 @@
+<% provide(:title, 'Address') %>
+<h1>Manage Shipping Address</h1>
+
+<% if current_user.addresses.any? %>
+	<h3>Shipping Address</h3>
+	<div class="addresses">
+		<%= render @addresses %>
+	</div>
+<% else %>
+	<h3>We don't have a recorded shipping address for you.</h3>
+	<%= link_to "Add an address?", new_address_path %>
+<% end %>

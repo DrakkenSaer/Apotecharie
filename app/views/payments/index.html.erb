@@ -1,0 +1,14 @@
+<% provide(:title, 'Billing') %>
+<h1>Manage Payment Options</h1>
+
+<% if current_user.payments.any? %>
+	<h3>Payment Instruments (<%= current_user.payments.count %>)</h3>
+	<div class="payments">
+		<%= render @payments %>
+	</div>
+	<%= link_to "Add another payment method", new_payment_path %>
+	<%= will_paginate @payments %>
+<% else %>
+	<h3>You do not have any recorded payment instruments.</h3>
+	<%= link_to "Add a payment method?", new_payment_path %>
+<% end %>

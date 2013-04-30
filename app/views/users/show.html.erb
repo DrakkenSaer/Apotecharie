@@ -1,0 +1,19 @@
+<% provide(:title, @user.email) %>
+<h1><%= @user.email %></h1>
+
+<h3>Orders</h3>
+<ul>
+	<li><%= link_to "Return Item(s)", '#' %></li>
+	<li><%= link_to "View Order History", '#' %></li>
+</ul>
+
+<h3>Payment</h3>
+<ul>
+	<li><%= link_to "Manage Payment Options", payments_path %></li>
+	<li><%= link_to "Change Shipping Address", addresses_path %></li>
+</ul>
+
+<h3>Settings</h3>
+<ul>
+	<li><%= link_to "Update or Delete Account", edit_user_registration_path(current_user) %></li>
+</ul>

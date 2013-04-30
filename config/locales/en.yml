@@ -1,0 +1,20 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  hello: "Hello world"
+
+en:
+  activerecord:
+    attributes:
+      payment:
+        billing_address_1: "Address Line 1"
+        billing_address_2: "Address Line 2"
+        billing_state: "State"
+
+en:
+  activerecord:
+    attributes:
+      address:
+        address_1: "Address Line 1"
+        address_2: "Address Line 2"

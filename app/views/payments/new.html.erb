@@ -1,0 +1,25 @@
+<% provide(:title, 'Add Payment Method') %>
+
+<h1>Add Payment Method</h1>
+
+<div class="row">
+	<div class="span6 offset3">
+		<%= form_for(@payment) do |f| %>
+			<%= render 'shared/error_messages', object: f.object %>
+
+			<%= f.label :billing_address_1 %>
+			<%= f.text_field :billing_address_1 %>
+
+			<%= f.label :billing_address_2 %>
+			<%= f.text_field :billing_address_2 %>
+
+			<%= f.label :billing_state %>
+			<%= f.text_field :billing_state %>
+
+			<%= f.label :billing_zip_code %>
+			<%= f.text_field :billing_zip_code %>
+
+			<%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+		<% end %>
+	</div>
+</div>

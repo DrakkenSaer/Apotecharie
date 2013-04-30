@@ -1,0 +1,10 @@
+<li>
+  <%= link_to user.email, user %>
+  <% if current_user.admin? && !current_user?(user) %>
+	  <div class="admin_privileges_right">
+		 <%= link_to "edit", edit_user_path(user) %>
+		| <%= link_to "delete", user, method: :delete,
+		                          data: { confirm: "You sure? Deleting this user will also delete their surveys in the system." } %>
+	  </div>
+  <% end %>
+</li>
