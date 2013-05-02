@@ -36,5 +36,8 @@ Apotecharie::Application.configure do
   config.assets.debug = true
 
   # Devise Mailer
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }\
+ 
+  # Paperclip Image Processor = ImageMagick
+  Paperclip.options[:command_path] = 'C:\Windows\system32\convert'
 end

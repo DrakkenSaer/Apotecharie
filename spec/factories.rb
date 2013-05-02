@@ -27,6 +27,14 @@ FactoryGirl.define do
 		user
 	end
 
+	factory :product do
+		sequence(:title) { |n| "Example Title #{n}"}
+		sequence(:description) { |n| "Example description #{n}" }
+		price 5.99
+		shipping_price 6.66
+		image File.new(Rails.root + 'spec/fixtures/images/rails.png')
+	end
+
 	factory :headline do
 		title "Test Title"
 		body  "test content test content test content test content"

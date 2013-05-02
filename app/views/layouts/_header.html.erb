@@ -6,6 +6,7 @@
         <ul class="nav pull-right">
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "Help", help_path %></li>
+          <li><%= link_to "Inventory", products_path %></li>
           <% if user_signed_in? %>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -15,8 +16,8 @@
                 <li><%= link_to "Profile", current_user %></li>
                 <li><%= link_to "Settings", edit_user_registration_path(current_user) %></li>
                 <li><%= link_to "Order History", current_user %></li>
-                <li><%= link_to "Payment Options", current_user %></li>
-                <li><%= link_to "Shipping Address", current_user %></li>
+                <li><%= link_to "Payment Options", payments_path %></li>
+                <li><%= link_to "Shipping Address", addresses_path %></li>
                 <li class="divider"></li>
                 <li>
                   <%= link_to "Sign out", signout_path, method: "delete" %>
