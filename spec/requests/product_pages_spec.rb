@@ -94,41 +94,41 @@ describe "Product Pages" do
 			end
 			it { should have_selector('h1', text: 'Add A Product Listing') }
 		end
-	end
 
-	describe "new listings page" do
-		let(:admin) { FactoryGirl.create(:admin) }
-		before do
-			sign_in admin
-			visit new_product_path
-		end
-
-		it { should have_selector('h1', text: 'Add A Product Listing') }
-
-		describe "with invalid information" do
-			let(:submit) { "Submit" }
-			it "should not create a listing" do
-				expect { click_button submit }.not_to change(Product, :count)
-			end
-
-			describe "error messages" do
-				before { click_button submit }
-				it { should have_content('error') }
-			end
-		end
-
-		describe "with valid upload" do
-			let(:submit) { "Submit" }
+		describe "upload listings" do
+			let(:admin) { FactoryGirl.create(:admin) }
 			before do
-				fill_in "product_title",			with: "Example Title"
-				fill_in "product_description",		with: "Example Description"
-				fill_in "product_price",			with: 5.99
-				fill_in "product_shipping_price",	with: 6.66
-				attach_file "product_image", 'spec/fixtures/images/rails.png'
+				sign_in admin
+				visit new_product_path
 			end
 
-			it "should create a product listing" do
-				expect { click_button submit }.to change(Product, :count).by(1)
+			it { should have_selector('h1', text: 'Add A Product Listing') }
+
+			describe "with invalid information" do
+				let(:submit) { "Submit" }
+				it "should not create a listing" do
+					expect { click_button submit }.not_to change(Product, :count)
+				end
+
+				describe "error messages" do
+					before { click_button submit }
+					it { should have_content('error') }
+				end
+			end
+
+			describe "with valid upload" do
+				let(:submit) { "Submit" }
+				before do
+					fill_in "product_title",			with: "Example Title"
+					fill_in "product_description",		with: "Example Description"
+					fill_in "product_price",			with: 5.99
+					fill_in "product_shipping_price",	with: 6.66
+					attach_file "product_image", 'spec/fixtures/images/rails.png'
+				end
+
+				it "should create a product listing" do
+					expect { click_button submit }.to change(Product, :count).by(1)
+				end
 			end
 		end
 	end

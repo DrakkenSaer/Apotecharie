@@ -1,14 +1,14 @@
 <% provide(:title, @product.title) %>
-<h1><%= @product.title %></h1>
+<h1><%= wrap(@product.title) %></h1>
 
 <div class="product">
 
   <div class="product_table">
     <%= image_tag(@product.image.url) %>
-    <%= @product.title %>
-    <%= @product.description %>
-    <%= @product.price %>
-    <%= @product.shipping_price %>
+    <%= wrap(@product.title) %>
+    <%= wrap(@product.description) %>
+    <%= wrap(@product.price) %>
+    <%= wrap(@product.shipping_price) %>
   </div>
 
   <% if user_signed_in? && current_user.admin? %>

@@ -9,10 +9,10 @@
         <td>Postal Code</td>
       </tr>
       <tr>
-        <td><%= payment.billing_address_1 %></td>
-        <td><%= payment.billing_address_2 %></td>
-        <td><%= payment.billing_state %></td>
-        <td><%= payment.billing_zip_code %></td>
+        <td><%= wrap(payment.billing_address_1) %></td>
+        <td><%= wrap(payment.billing_address_2) %></td>
+        <td><%= wrap(payment.billing_state) %></td>
+        <td><%= wrap(payment.billing_zip_code) %></td>
       </tr>
     </table>
   </div>

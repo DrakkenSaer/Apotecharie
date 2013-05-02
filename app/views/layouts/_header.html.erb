@@ -7,6 +7,9 @@
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "Help", help_path %></li>
           <li><%= link_to "Inventory", products_path %></li>
+          <% if user_signed_in? && current_user.admin? %>
+           <li><%= link_to "Administrate", admin_path %></li>
+          <% end %>
           <% if user_signed_in? %>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -14,7 +17,7 @@
               </a>
               <ul class="dropdown-menu">
                 <li><%= link_to "Profile", current_user %></li>
-                <li><%= link_to "Settings", edit_user_registration_path(current_user) %></li>
+                <li><%= link_to "Settings", edit_user_registration_path %></li>
                 <li><%= link_to "Order History", current_user %></li>
                 <li><%= link_to "Payment Options", payments_path %></li>
                 <li><%= link_to "Shipping Address", addresses_path %></li>

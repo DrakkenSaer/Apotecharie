@@ -9,17 +9,17 @@
         <td>Postal Code</td>
       </tr>
       <tr>
-        <td><%= address.address_1 %></td>
-        <td><%= address.address_2 %></td>
-        <td><%= address.state %></td>
-        <td><%= address.zip_code %></td>
+        <td><%= wrap(address.address_1) %></td>
+        <td><%= wrap(address.address_2) %></td>
+        <td><%= wrap(address.state) %></td>
+        <td><%= wrap(address.zip_code) %></td>
       </tr>
     </table>
   </div>
   
 
   <span class="date">
-    Date added <%= (address.created_at) %>.
+    Date added <%= address.created_at %>.
   </span>
 
   <div>

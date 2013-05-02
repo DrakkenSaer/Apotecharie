@@ -31,4 +31,31 @@ describe "Pages" do
     it { should have_selector('h1', text: "Contact") }
   end
 
+  describe "Admin page" do
+    describe "for normal user" do
+      let(:user) { FactoryGirl.create(:user) }
+      before do
+        sign_in user
+        visit admin_path
+      end
+      it { should have_content('You do not have sufficient privileges to view this page!') }
+    end
+
+    describe "for user not signed in" do
+      before do
+        visit admin_path
+      end
+      it { should have_content('You need to sign in or sign up before continuing.') }
+    end
+
+    describe "for admin user" do
+      let(:admin) { FactoryGirl.create(:admin) }
+      before do
+        sign_in admin
+        visit admin_path
+      end
+      it { should have_selector('h1', text: 'Administrative tools') }
+    end
+  end
+
 end

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-	before_filter :authenticate_user!, only: [:show, :edit, :update, :index, :destroy]
-	before_filter :correct_user,   only: [:show, :edit, :update, :destroy]
-	before_filter :admin_user,     only: [:destroy]
+	before_filter :authenticate_user!, except: [:new, :create]
+	before_filter :correct_user, only: [:edit, :update, :destroy]
+	before_filter :admin_user, only: [:edit, :update, :destroy]
 
 	def index
 		@users = User.paginate(page: params[:page])
@@ -9,6 +9,18 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
+	end
+
+	def edit
+	end
+
+	def update
+		if @user.update_attributes(params[:user])
+			flash[:success] = "Changes were successfully saved!"
+			redirect_to users_path
+		else
+			render 'edit'
+		end
 	end
 
 	def destroy
@@ -33,5 +45,4 @@ class UsersController < ApplicationController
 	        redirect_to current_user, notice: "You do not have sufficient privileges to view this page!"
 	      end
 	    end
-
 end

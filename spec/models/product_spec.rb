@@ -18,6 +18,11 @@ describe Product do
 
   it { should be_valid }
 
+  describe "validating image" do
+    it { should have_attached_file(:image) }
+    it { should validate_attachment_presence(:image) }
+  end
+
   describe "validating numericality" do
 	before do
 		@product.price = "a"

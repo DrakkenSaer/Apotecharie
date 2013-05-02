@@ -11,9 +11,10 @@ Apotecharie::Application.routes.draw do
   devise_scope :user do 
     match '/signin',   to: 'devise/sessions#new' 
     match '/signup',   to: 'devise/registrations#new' 
-    match '/signout',   to: 'devise/sessions#destroy' 
+    match '/signout',  to: 'devise/sessions#destroy' 
   end
 
+  match '/admin',   to: 'pages#admin'
   match '/help',    to: 'pages#help'
   match '/about',   to: 'pages#about'
   match '/contact', to: 'pages#contact'

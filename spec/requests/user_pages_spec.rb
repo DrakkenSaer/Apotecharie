@@ -4,6 +4,81 @@ describe "User pages" do
 
   subject { page }
 
+	describe "edit" do
+		let!(:user) { FactoryGirl.create(:user, email: "ben@example.com") }
+
+		describe "as normal user" do
+			before do
+				sign_in user
+				visit edit_user_registration_path
+			end
+
+			describe "viewing the admin edit page" do
+				before do
+					visit edit_user_path(user)
+				end
+				it { should have_content("You do not have sufficient privileges to view this page!") }
+			end
+
+			describe "viewing the page" do
+				before {visit edit_user_registration_path}
+				it {should have_selector('h2', text: "Settings for " + user.email)}
+				it {should have_selector('label', text: "Email")}
+				it {should have_selector('label', text: "Password")}
+				it {should have_selector('label', text: "Password confirmation")}
+				it {should have_selector('label', text: "Current password")}
+			end
+
+			describe "with valid information" do
+				let(:new_email)		{ "new@example.com" }
+				let(:new_password)	{ "differentpass" }
+				before do
+					fill_in "Email",					with: new_email
+					fill_in "Password",					with: new_password
+					fill_in "Password confirmation",	with: new_password
+					fill_in "Current password",         with: user.password
+					click_button "Update"
+				end
+			
+				it { should have_content("Changes were successfully saved!") }
+				it { should have_link('Sign out', href: signout_path) }
+				specify { user.reload.email.should  == new_email }
+			end
+		end
+
+		describe "as administrator" do
+			let(:admin) { FactoryGirl.create(:admin) }
+			before do
+				sign_in admin
+				visit edit_user_path(user)
+			end
+
+			describe "viewing the page" do
+				before {visit edit_user_path(user)}
+				it {should have_selector('h2', text: "Settings for " + user.email)}
+				it {should have_selector('label', text: "Email")}
+				it {should have_selector('label', text: "Password")}
+				it {should have_selector('label', text: "Password confirmation")}
+			end
+
+			describe "with valid information" do
+				let(:new_email)		{ "new@example.com" }
+				let(:new_password)	{ "differentpass" }
+				before do
+					fill_in "Email",					with: new_email
+					fill_in "Password",					with: new_password
+					fill_in "Password confirmation",	with: new_password
+					click_button "Update"
+				end
+			
+				it { should have_selector('title', text: "All users") }
+				it { should have_selector('div.alert.alert-success') }
+				it { should have_link('Sign out', href: signout_path) }
+				specify { user.reload.email.should  == new_email }
+			end
+		end
+	end
+
 	describe "signup page" do
 		before do 
 			visit signup_path 
