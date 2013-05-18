@@ -1,0 +1,24 @@
+<nav>
+	<ul class="nav pull-right">
+	  <li id="home-link"><%= link_to t(:home), root_path %></li>
+	  <li id="inventory-link"><%= link_to t(:inventory), products_path %></li>
+      <li id="link-to-cart"><%= link_to_cart %></li>
+	  <% if signed_in? %>
+	    <li id="fat-menu" class="dropdown">
+	      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+	        Account <b class="caret"></b>
+	      </a>
+	      <ul class="dropdown-menu">
+	        <li><%= link_to "Profile", current_user %></li>
+	        <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+	        <li class="divider"></li>
+	        <li>
+	          <%= link_to "Sign out", signout_path, method: "delete" %>
+	        </li>
+	      </ul>
+	    </li>
+	  <% else %>
+	    <li><%= link_to "Sign in", signin_path %></li>
+	  <% end %>
+	</ul>
+</nav>

@@ -1,0 +1,53 @@
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#trigger").click(function(){
+    $("#toggle").slideToggle();
+  });
+});
+</script>
+
+<header>
+<ul id="menu"> 
+    <li class="logo">
+        <%= link_to "Apotecharie", login_path %>
+        <ul id="main"> 
+            <li>Welcome to <b>Apotecharie!</b></li> 
+        </ul> 
+    </li> 
+    <li><%= link_to "Login", login_path %> 
+        <ul class="inset-right">
+            <li><%= link_to "Login", login_path %></li>
+            <li><%= link_to "Sign up", signup_path %></li>
+        </ul> 
+    </li> 
+    <li><%= link_to "Help", '#' %>
+        <ul class="inset">
+            <li><%= link_to "FAQ", help_path %></li> 
+            <li><%= link_to "Contact us", contact_path %></li>
+        </ul> 
+    </li>
+    <li><%= link_to "Inventory", products_path %> 
+        <ul class="inset"> 
+            <li><%= link_to "FAQ", help_path %></li> 
+            <li><%= link_to "Contact us", contact_path %></li>
+        </ul> 
+    </li>
+    <li><%= link_to "Inventory", products_path %> 
+        <ul class="inset"> 
+            <li><%= link_to "FAQ", help_path %></li> 
+            <li><%= link_to "Contact us", contact_path %></li>
+        </ul> 
+    </li>
+    <div class="float-right">
+        <li class="searchContainer"> 
+          <%= form_tag products_url, :method => :get, :class => 'navbar-form' do %>
+            <div> 
+            <input type="search" id="toggle" name="keywords" placeholder="Search"> 
+            <img src="assets/store/magnifier.png" alt="Search" id="trigger"/>
+            </div>
+          <% end %>
+        </li> 
+        <li id="link-to-cart"><%= link_to_cart %></li>
+    </div>
+</ul> 
+</header>

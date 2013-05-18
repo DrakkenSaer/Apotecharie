@@ -1,0 +1,17 @@
+<tr class="product_property fields" id="spree_<%= dom_id(f.object) %>" data-hook="product_property">
+  <td class="no-border">
+    <span class="handle"></span>
+    <%= f.hidden_field :id %>
+  </td>
+  <td class='property_name'>
+    <%= f.text_field :property_name, :class => 'autocomplete' %>
+  </td>
+  <td class='value'>
+    <%= f.text_field :value, :class => 'autocomplete' %>
+  </td>
+  <td class="actions">
+    <% unless @product.properties.empty? %>
+      <%= link_to_remove_fields t(:remove), f, :no_text => true %>
+    <% end %>
+  </td>
+</tr>
