@@ -1,7 +1,8 @@
 <script type="text/javascript">
 $(document).ready(function(){
+  $(function(){$("#toggle").hide();})
   $("#trigger").click(function(){
-    $("#toggle").slideToggle();
+    $("#toggle").animate({width: 'toggle'});
   });
 });
 </script>
@@ -9,7 +10,7 @@ $(document).ready(function(){
 <header>
 <ul id="menu"> 
     <li class="logo">
-        <%= link_to "Apotecharie", login_path %>
+        <%= link_to "Apotecharie", root_path %>
         <ul id="main"> 
             <li>Welcome to <b>Apotecharie!</b></li> 
         </ul> 
@@ -42,8 +43,8 @@ $(document).ready(function(){
         <li class="searchContainer"> 
           <%= form_tag products_url, :method => :get, :class => 'navbar-form' do %>
             <div> 
-            <input type="search" id="toggle" name="keywords" placeholder="Search"> 
-            <img src="assets/store/magnifier.png" alt="Search" id="trigger"/>
+            <input type="search" id="toggle" name="keywords" placeholder="Search">
+            <%= image_tag("store/magnifier.png", id: "trigger", alt: "Search")%>
             </div>
           <% end %>
         </li> 

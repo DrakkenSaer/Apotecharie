@@ -1,9 +1,9 @@
-@import "./variables.css.scss"; // Must call explicit path or else extension integration tests cannot import file.
+@import "./variables.css.scss";
 @import "bootstrap";
 
-/* mixins, variables, etc. */
-
-$grayMediumLight: #eaeaea;
+/*--------------------------------------*/
+/* Mixins
+/*--------------------------------------*/
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -12,31 +12,42 @@ $grayMediumLight: #eaeaea;
 }
 
 @mixin border_radius {
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
+  -webkit-border-radius: 1.5em;
+  -moz-border-radius: 1.5em;
+  border-radius: 1.5em;
 }
 
-/* universal */
+@mixin border_radius_left {
+  -webkit-border-radius: 1em 0 0 1em; 
+  -moz-border-radius: 1em 0 0 1em; 
+  border-radius: 1em 0 0 1em;
+}
+
+@mixin border_radius_bottom {
+  -webkit-border-radius: 0 0 1em 1em; 
+  -moz-border-radius: 0 0 1em 1em; 
+  border-radius: 0 0 1em 1em;
+}
+
+@mixin no_border_shadow {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+}
+
+
+/*--------------------------------------*/
+/* Universal
+/*--------------------------------------*/
 
 html {
-  overflow: hidden;
-  width: 100%;  height: 100%;
+  width: 100%;  
+  height: 100%;
 }
 
 section {
   overflow: auto;
-}
-
-textarea {
-  resize: vertical;
-}
-
-.center {
-  text-align: center;
-  h1 {
-    margin-bottom: 10px;
-  }
 }
 
 li {
@@ -47,21 +58,35 @@ a:hover {
   text-decoration: none;
 }
 
-/* miscellaneous */
+body {
+  font-family: $ff_base;
+  font-size: $base_font_size;
+  font-weight: 400;
+  color: $body_text_color;
+  line-height: 18px;
+  background-color: $layout_background_color;
+  -webkit-font-smoothing: antialiased;
+}
+
+/*--------------------------------------*/
+/* Miscellaneous
+/*--------------------------------------*/
 
 .debug_dump {
   clear: both;
   float: left;
   width: 100%;
-  margin-top: 45px;
+  margin-top: 5em;
   @include box_sizing;
 }
 
-/* footer */
+/*--------------------------------------*/
+/* Footer
+/*--------------------------------------*/
 
 footer {
-  margin-top: 45px;
-  padding-top: 5px;
+  margin-top: 5em;
+  padding-top: 1em;
   border-top: 1px solid $grayMediumLight;
   color: $grayLight;
   a {
@@ -76,156 +101,157 @@ footer {
 
   #footer-right { 
   	float: right;
-	ul {
-	  float: right;
-	  list-style: none;
-	  li {
-	    float: left;
-	    margin-left: 10px;
-	  }
-	}
+  	ul {
+  	  float: right;
+  	  li {
+  	    float: left;
+  	    margin-left: 1em;
+  	  }
+  	}
   }
 }
 
-/* header */
+/*--------------------------------------*/
+/* Header
+/*--------------------------------------*/
 
 #link-to-cart {
-  padding-left: 24px;
+  padding-left: 2em;
   background: url("cart.png") no-repeat left center;
   font-weight: bold;
-  a:hover {color: #B0D730;}
-
-  &:hover {
-    border-color: $link_text_color;
-
-    .amount {
-      border-color: $link_text_color;
-    }
-  }
+  a:hover {color: $lightBlue;}
 }
 
 #menu {
   display:inline-block;
-  background-color: #172322;
+  background-color: $darkGray;
   z-index:1000;
   width: 100%;
-  margin: 0 0 2em 0;
+  margin: 0 0 3em 0;
+  font-size: $header_navigation_font_size;
+  color:#fff;
   @include border_radius;
 
   .float-right {
     float:right;
-    li {
-      display:inline-block;
-      margin:0.9em 0.5em;
-    }
+    li { display:inline-block; margin:0.9em 0.5em; }
   }
 
-  a { color:#fff; }
+  a { color:#fff; &:hover { color:$linkGreen; } }
 
   > li { float:left; position:relative; padding:1.5em 1em; } 
 
-  > li a:hover { color:#B0D730; }
+  .logo { padding:1em 0.5em; font-weight: bold; font-size: 150%; background-color: $logoGreen; @include border_radius_left; a:hover{ color: #fff; } } 
 
-  .logo { padding:1em 0.5em; font-weight: bold; color:#fff; font-size: 150%; background-color: #375a4b; -webkit-border-radius: 20px 0 0 20px; -moz-border-radius: 20px 0 0 20px; border-radius: 20px 0 0 20px; 
-  a:hover{ color: #fff; } } 
+  #main { width: 100%; margin-top: 2.8em; left:0; background-color:$logoGreen; z-index:999; font-weight:normal; font-size: 75%; }
 
-  #main { width: 100%; margin-top: 3em; left:0px; background-color:#375a4b; color:#fff; z-index:999; font-weight:normal; font-size: 75%;}
+  ul { padding:0; margin:0; }
 
-  ul { padding:0; margin:0; display:block; display:inline;}
+  li ul { position:absolute; left:0; top:0; margin-top:4.4em; width:10em; line-height:1.5em; background-color:$darkGray; display:none; @include border_radius_bottom; } 
 
-  li ul { position:absolute; left:-1%; top:0; margin-top:4.4em; width:10em; line-height:1.5em; background-color:#172322; color:#0395CC; display:none; -webkit-border-radius: 0 0 20px 20px; -moz-border-radius: 0 0 20px 20px; border-radius: 0 0 20px 20px; } 
+  li:hover ul { display:block; } 
+
+  li ul li{ margin:0.5em 1.5em; padding: 0.5em 0;  border-top: dotted 1px $lightGray; &:first-child { border-top: none; } a { color:$darkBlue; } a:hover { color:$lightBlue; } } 
 
   .inset {
-    &:before {
-        content: "";
-        display: block;
-        background: #fff;
-        position: absolute;
-        top: 0px;
-        left: -40px;
-        width: 40px;
-        height: 40px;
-        border-radius: 20px;
-        z-index: 1000;
-    }
-    &:after{
-        content: "";
-        display: block;
-        background: #fff;
-        position: absolute;
-        top: 0px;
-        right: -40px;
-        width: 40px;
-        height: 40px;
-        border-radius: 20px;
-        z-index: 1000;
-    }
+
+    &:before { content: ""; display: block; background: #fff; position: absolute; top: 0; left: -3em; width: 3em; height: 3em; @include border_radius; z-index: 1000; }
+
+    &:after{ content: ""; display: block; background: #fff; position: absolute; top: 0; right: -3em; width: 3em; height: 3em; @include border_radius; z-index: 1000; }
+
     li:last-child{
-      &:before {
-        content: "";
-        display: block;
-        background: #172322;
-        position: absolute;
-        top: 0px;
-        left: -20px;
-        width: 20px;
-        height: 20px;
-      }
-      &:after{
-          content: "";
-          display: block;
-          background: #172322;
-          position: absolute;
-          top: 0px;
-          right: -20px;
-          width: 20px;
-          height: 20px;
-      }
+
+      &:before { content: ""; display: block; background: $darkGray; position: absolute; top: 0; left: -1.5em; width: 1.5em; height: 1.5em; }
+
+      &:after{ content: ""; display: block; background: $darkGray; position: absolute; top: 0; right: -1.5em; width: 1.5em; height: 1.5em; }
     }
   }
 
   .inset-right {
-    &:after{
-        content: "";
-        display: block;
-        background: #fff;
-        position: absolute;
-        top: 0px;
-        right: -40px;
-        width: 40px;
-        height: 40px;
-        border-radius: 20px;
-        z-index: 1000;
-    }
+
+    &:after{ content: ""; display: block; background: #fff; position: absolute; top: 0; right: -3em; width: 3em; height: 3em; @include border_radius; z-index: 1000; }
+
     li:last-child{
-      &:after{
-          content: "";
-          display: block;
-          background: #172322;
-          position: absolute;
-          top: 0px;
-          right: -20px;
-          width: 20px;
-          height: 20px;
-      }
+
+      &:after{ content: ""; display: block; background: $darkGray; position: absolute; top: 0; right: -1.5em; width: 1.5em; height: 1.5em; }
     }
   }
-
-  li:hover ul { display:block;} 
-
-  li ul li{ 
-    margin:0.5em 1.5em; padding: 0.5em 0;  border-top: dotted 1px #606060; 
-
-    &:first-child { border-top: none; }
-
-    a { display:block; color:#0395CC; }
-
-    a:hover { color:#7FCDFE; }
-  } 
 } 
 
 .searchContainer {
-  div { background-color: #fff; @include border_radius; padding: 0 0.5em; height: 2.5em;} 
-  input {border:none; @include border_radius; margin: 0.2em 0;} 
-  img { vertical-align:middle;} 
+  div { background-color: #fff; @include border_radius; padding: 0 0.5em; } 
+  input { @include border_radius; margin: 0; } 
+  img { vertical-align:middle; padding: 0.75em 0.3em; cursor: pointer;} 
+}
+
+/*--------------------------------------*/
+/* Forms
+/*--------------------------------------*/
+
+textarea, input[type="date"],
+input[type="datetime"], input[type="datetime-local"],
+input[type="email"], input[type="month"], input[type="number"],
+input[type="password"], input[type="search"], input[type="tel"],
+input[type="text"], input[type="time"], input[type="url"],
+input[type="week"] {
+
+  border: $default_border;
+  padding: 5px 10px;
+  font-family: $ff_base;
+  font-size: $input_box_font_size;
+
+  &:active, &:focus { outline: none; @include no_border_shadow; }
+
+}
+
+#error_explanation {
+  color: #f00;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .control-group;
+  @extend .error;
+}
+
+/*--------------------------------------*/
+/* Products
+/*--------------------------------------*/
+
+ul#products {
+  li {
+    text-align: center;
+    font-weight: bold;
+    margin: 1em;
+
+    a {
+      display: block;
+
+      &.info {
+        height: 2em;
+        margin-top: 0.5em;
+        font-size: $product_list_name_font_size;
+        color: $product_link_text_color;
+        border-bottom: 1px solid lighten($body_text_color, 60);
+        overflow: hidden;
+      }
+    }
+
+    .price {
+      color: $link_text_color;
+      font-size: $product_list_price_font_size;
+      padding-top: 0.5em;
+      display: block;
+    }
+  }
+}
+
+.search-results-title {
+  font-size: $product_list_search_font_size;
+  text-transform: uppercase;
+  border-bottom: 1px solid lighten($body_text_color, 60);
+  margin-bottom: 10px;
 }
