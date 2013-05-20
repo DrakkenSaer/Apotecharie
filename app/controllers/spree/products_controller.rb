@@ -10,7 +10,7 @@ module Spree
       @searcher = Config.searcher_class.new(params)
       @searcher.current_user = try_spree_current_user
       @searcher.current_currency = current_currency
-      @products = @searcher.retrieve_products
+      @products = @searcher.retrieve_products.page(params[:page]).per(params[:per_page] ||= 10)
       respond_with(@products)
     end
 
