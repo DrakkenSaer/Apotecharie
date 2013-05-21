@@ -8,20 +8,32 @@ $(document).ready(function(){
 </script>
 
 <header>
+<% if spree_user_signed_in? %>
+<small>Logged in as <%= spree_current_user.email %></small>
+<% end %>
 <ul id="menu"> 
     <li class="logo">
         <%= link_to "Apotecharie", root_path %>
         <ul id="main"> 
             <li>Welcome to <b>Apotecharie!</b></li> 
         </ul> 
-    </li> 
+    </li>
+    <% if spree_user_signed_in? %> 
+    <li><%= link_to "Welcome back!", spree_current_user %> 
+        <ul class="inset-right">
+            <li><%= link_to "Account", spree_current_user %></li>
+            <li><%= link_to "Logout", destroy_user_session_path %></li>
+        </ul> 
+    </li>
+    <% else %>
     <li><%= link_to "Login", login_path %> 
         <ul class="inset-right">
             <li><%= link_to "Login", login_path %></li>
             <li><%= link_to "Sign up", signup_path %></li>
         </ul> 
-    </li> 
-    <li><%= link_to "Help", '#' %>
+    </li>
+    <% end %>
+    <li><%= link_to "Help", help_path %>
         <ul class="inset">
             <li><%= link_to "FAQ", help_path %></li> 
             <li><%= link_to "Contact us", contact_path %></li>
@@ -41,7 +53,7 @@ $(document).ready(function(){
     </li>
     <div class="float-right">
         <li class="searchContainer"> 
-          <%= form_tag products_url, :method => :get, :class => 'navbar-form' do %>
+          <%= form_tag products_url, method: :get, :class => 'navbar-form' do %>
             <div> 
             <input type="search" id="toggle" name="keywords" placeholder="Search">
             <%= image_tag("store/magnifier.png", id: "trigger", alt: "Search")%>

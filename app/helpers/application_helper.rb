@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+	def current_url(new_params)
+	  url_for params: params.merge(new_params)
+	end
+
 	def full_title(last)
 		first = "Apotecharie"
 		if last.empty?
@@ -12,7 +16,6 @@ module ApplicationHelper
 	def wrap(content)
 		sanitize(raw(content.split.map{ |s| wrap_long_string(s) }.join(' ')))
 	end
-
 
 	private
 
