@@ -17,7 +17,7 @@
 
 <div class="row-fluid">
 <%= form_tag({ action: "index" }, { method: "get", id: "products-index" }) do %>
-  <%= select_tag(:per_page, options_for_select(["Select items per page", ["10", 10], ["25", 25], ["50", 50]], selected: "Select items per page"), { id: "switch-view" }) %>
+  <%= select_tag(:per_page, options_for_select(["Select items per page", ["10", 10], ["25", 25], ["50", 50], ["100", 100]], selected: "Select items per page"), { id: "switch-view" }) %>
 <% end %>
 
 <% if params[:keywords] %>
@@ -27,5 +27,6 @@
       <%= render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon } %>
     <% end %>
 <% else %>
+    <h6 class="search-results-title"><%= t(:inventory) %></h6>
     <%= render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon } %>
 <% end %>

@@ -1,5 +1,6 @@
 @import "./variables.css.scss"; // Must call explicit path or else extension integration tests cannot import file.
 @import "bootstrap";
+@import "bootstrap-responsive";
 
 /*--------------------------------------*/
 /* Universal
@@ -150,7 +151,7 @@ h1, h2, h3, h4, h5, h6 {
 textarea, input[type="date"],
 input[type="datetime"], input[type="datetime-local"],
 input[type="email"], input[type="month"], input[type="number"],
-input[type="password"], input[type="tel"],
+input[type="password"], input[type="tel"], input[type="search"],
 input[type="text"], input[type="time"], input[type="url"],
 input[type="week"] {
   border: $default_border;
@@ -159,7 +160,7 @@ input[type="week"] {
   font-size: $input_box_font_size;
 
   &:active, &:focus {
-    border-color: $link_text_color;;
+    border-color: $link_text_color;
     outline: none;
     @include no_border_shadow
   }
@@ -293,7 +294,7 @@ table {
   width: 100%;
   margin: 0 0 3em 0;
   font-size: $header_navigation_font_size;
-  color:#fff;
+  color: #fff;
   @include border_radius;
 
   .float-right {
@@ -301,11 +302,11 @@ table {
     li { display:inline-block; margin:0.9em 0.5em; }
   }
 
-  a { color:#fff; &:hover { color:$linkGreen; } }
+  a { color: inherit; &:hover { color:$linkGreen; } }
 
   > li { float:left; position:relative; padding:1.5em 1em; } 
 
-  .logo { padding:1em 0.5em; font-weight: bold; font-size: 150%; background-color: $logoGreen; @include border_radius_left; a:hover{color: #fff;} } 
+  .logo { padding:1em 0.5em; font-weight: bold; font-size: 150%; background-color: $logoGreen; @include border_radius_left; a:hover{color: inherit;} } 
 
   #main { width: 100%; margin-top: 2.8em; left:0; background-color:$logoGreen; z-index:999; font-weight:normal; font-size: 75%; }
 
@@ -319,9 +320,9 @@ table {
 
   .inset {
 
-    &:before { content: ""; display: block; background: #fff; position: absolute; margin: 0.05em 0 0 -3em ; width: 3em; height: 3em; @include border_radius; z-index: 1000; }
+    &:before { content: ""; display: block; background: $layout_background_color; position: absolute; margin: 0.05em 0 0 -3em ; width: 3em; height: 3em; @include border_radius; z-index: 1000; }
 
-    &:after{ content: ""; display: block; background: #fff; position: absolute; margin: -6.4em 0 0 10em; width: 3em; height: 3em; @include border_radius; z-index: 1000; }
+    &:after{ content: ""; display: block; background: $layout_background_color; position: absolute; margin: -6.4em 0 0 10em; width: 3em; height: 3em; @include border_radius; z-index: 1000; }
 
     li:last-child{
 
@@ -333,7 +334,7 @@ table {
 
   .inset-right {
 
-    &:after{ content: ""; display: block; background: #fff; position: absolute; margin: -6.4em 0 0 10em; width: 3em; height: 3em; @include border_radius; z-index: 1000; }
+    &:after{ content: ""; display: block; background: $layout_background_color; position: absolute; margin: -6.4em 0 0 10em; width: 3em; height: 3em; @include border_radius; z-index: 1000; }
 
     li:last-child{
 
