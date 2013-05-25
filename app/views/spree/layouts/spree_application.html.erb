@@ -14,15 +14,23 @@
       <%= render :partial => 'spree/shared/header' %>
 
       <section>
+        <div class="container-fluid">
+          <div class="row-fluid">
+            <% if content_for?(:sidebar) %>
+              <aside id="sidebar" class="span2" data-hook>
+                <%= yield :sidebar %>
+              </aside>
+            <% end %>
 
-        <%= breadcrumbs(@taxon) %>
-
-        <%= render :partial => 'spree/shared/sidebar' if content_for? :sidebar %>
-        
-        <%= flash_messages %>
-        <%= yield %>
-
+            <div id="content" class="<% if !content_for?(:sidebar) %>span12<% else %>span10<% end %>" data-hook>
+              <%= breadcrumbs(@taxon) %>
+              <%= flash_messages %>
+              <%= yield %>
+            </div>
+          </div>
+        </div>
       </section>
+
 
       <%= render :partial => 'spree/shared/footer' %>
 

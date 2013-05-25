@@ -1,9 +1,5 @@
 module ApplicationHelper
-
-	def current_url(new_params)
-	  url_for params: params.merge(new_params)
-	end
-
+	
 	def full_title(last)
 		first = "Apotecharie"
 		if last.empty?
