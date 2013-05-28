@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/spree/spree_auth_devise.git
-  revision: b1c5f6d1a1141035915a757927461b0d1227f1cd
+  revision: 3a43e27709e025aa53320b1349b4d09e1cd45b72
   branch: 1-3-stable
   specs:
     spree_auth_devise (1.0.0)
@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: git://github.com/spree/spree_gateway.git
-  revision: b13d777aecf348eeffba1fa8e2df95298af1a1ea
+  revision: b35f65f466c27165df3522b69bfaf435f06c8b93
   branch: 1-3-stable
   specs:
     spree_gateway (1.2.0.rc2)
@@ -72,7 +72,8 @@ GEM
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
-    bootstrap-sass (2.1.0.0)
+    bootstrap-sass (2.3.1.2)
+      sass (~> 3.2)
     builder (3.0.4)
     cancan (1.6.8)
     capybara (1.1.2)
@@ -95,7 +96,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
-    cucumber (1.3.1)
+    cucumber (1.3.2)
       builder (>= 2.1.2)
       diff-lcs (>= 1.1.3)
       gherkin (~> 2.12.0)
@@ -149,15 +150,14 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
       railties (>= 3.0.0)
-    mail (2.5.3)
-      i18n (>= 0.4.0)
+    mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.23)
     money (5.0.0)
       i18n (~> 0.4)
       json
-    multi_json (1.7.3)
+    multi_json (1.7.4)
     multi_xml (0.5.3)
     nokogiri (1.5.9-x86-mingw32)
     nori (1.1.5)
@@ -230,10 +230,10 @@ GEM
       nokogiri (>= 1.4.0)
       nori (~> 1.1.0)
       wasabi (~> 2.5.0)
-    select2-rails (3.3.2)
-      sass-rails (>= 3.2)
+    select2-rails (3.4.1)
+      sass-rails
       thor (~> 0.14)
-    selenium-webdriver (2.32.1)
+    selenium-webdriver (2.33.0)
       childprocess (>= 0.2.5)
       multi_json (~> 1.0)
       rubyzip
@@ -290,7 +290,7 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.37)
-    uglifier (2.1.0)
+    uglifier (2.1.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
     uuidtools (2.1.4)
@@ -312,7 +312,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt-ruby (= 3.0.1)
-  bootstrap-sass (= 2.1)
+  bootstrap-sass (~> 2.3.1.2)
   capybara (= 1.1.2)
   coffee-rails (~> 3.2.1)
   cucumber-rails (= 1.2.1)

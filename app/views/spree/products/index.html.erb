@@ -18,6 +18,9 @@
 <div class="row-fluid">
 <%= form_tag({ action: "index" }, { method: "get", id: "products-index" }) do %>
   <%= select_tag(:per_page, options_for_select(["Select items per page", ["10", 10], ["25", 25], ["50", 50], ["100", 100]], selected: "Select items per page"), { id: "switch-view" }) %>
+  <% if !params[:keywords].nil? %>
+  <%= hidden_field_tag :keywords, params[:keywords] %>
+  <% end %>
 <% end %>
 
 <% if params[:keywords] %>

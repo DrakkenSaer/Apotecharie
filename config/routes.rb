@@ -9,5 +9,5 @@ Apotecharie::Application.routes.draw do
     match '/news',     	to: 'home#news'
     match '/users/:id',	to: 'users#show'
   end
-
+  
 end

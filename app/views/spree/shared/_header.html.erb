@@ -8,8 +8,16 @@ $(document).ready(function(){
 </script>
 
 <header>
-<% if spree_user_signed_in? %>
-<small>Logged in as <%= spree_current_user.email %></small>
+<% if spree_current_user %>
+  <ul id="login-nav" class="inline-menu">
+    <li><%= t(:logged_in_as) %>: <%= spree_current_user.email %></li>
+    <li><i class="icon-account"></i><%= link_to t(:account), spree.user_path(spree_current_user) %></li>
+    <li><i class="icon-signout"></i><%= link_to t(:logout), spree.logout_path %></li>
+    <li><i class="icon-external-link"></i><%= link_to t(:store), spree.products_path, :target => '_blank' %></li>
+    <% if spree_current_user.admin? %>
+        <li><i class="icon-dashboard"></i><%= link_to t(:administrate), spree.admin_path, :target => '_blank' %></li>
+    <% end %>
+  </ul>
 <% end %>
 <ul id="menu"> 
     <li class="logo">
@@ -58,6 +66,9 @@ $(document).ready(function(){
             <input type="search" id="toggle" name="keywords" placeholder="Search">
             <%= image_tag("store/magnifier.png", id: "trigger", alt: "Search")%>
             </div>
+            <% if !params[:per_page].nil? %>
+                <%= hidden_field_tag :per_page, params[:per_page] %>
+            <% end %>
           <% end %>
         </li> 
         <li id="link-to-cart"><%= link_to_cart %></li>
