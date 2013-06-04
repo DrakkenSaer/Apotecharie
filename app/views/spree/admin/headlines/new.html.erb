@@ -1,0 +1,17 @@
+<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @headline } %>
+
+<%= form_for [:admin, @headline] do |f| %>
+
+<fieldset data-hook="new_headline">
+
+  <legend align="center"><%= t(:new_headline) %></legend>
+
+  <div data-hook="new_headline_attrs" class="row">
+    <%= render :partial => 'form', :locals => { :f => f } %>
+  </div>
+
+  <%= render :partial => 'spree/admin/shared/new_resource_links' %>
+  
+</fieldset>
+
+<% end %>

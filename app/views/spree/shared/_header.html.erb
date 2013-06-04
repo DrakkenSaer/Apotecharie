@@ -11,9 +11,9 @@ $(document).ready(function(){
 <% if spree_current_user %>
   <ul id="login-nav" class="inline-menu">
     <li><%= t(:logged_in_as) %>: <%= spree_current_user.email %></li>
-    <li><i class="icon-account"></i><%= link_to t(:account), spree.user_path(spree_current_user) %></li>
+    <li><i class="icon-user"></i><%= link_to t(:account), spree.user_path(spree_current_user) %></li>
     <li><i class="icon-signout"></i><%= link_to t(:logout), spree.logout_path %></li>
-    <li><i class="icon-external-link"></i><%= link_to t(:store), spree.products_path, :target => '_blank' %></li>
+    <li><i class="icon-shopping-cart"></i><%= link_to t(:store), spree.products_path, :target => '_blank' %></li>
     <% if spree_current_user.admin? %>
         <li><i class="icon-dashboard"></i><%= link_to t(:administrate), spree.admin_path, :target => '_blank' %></li>
     <% end %>
@@ -21,7 +21,7 @@ $(document).ready(function(){
 <% end %>
 <ul id="menu"> 
     <li class="logo">
-        <%= link_to "Apotecharie", root_path %>
+        <figure id="logo"><%= logo %></figure>
         <ul id="main"> 
             <li>Welcome to <b>Apotecharie!</b></li> 
         </ul> 

@@ -1,7 +1,5 @@
 @import "./variables.css.scss"; // Must call explicit path or else extension integration tests cannot import file.
 @import "bootstrap";
-@import 'admin/plugins/font-awesome';
-
 
 /*--------------------------------------*/
 /* Universal
@@ -260,7 +258,7 @@ table {
   background-color: $darkGray;
   z-index:1000;
   width: 100%;
-  margin: 0 0 3em 0;
+  margin-top: 1%;
   font-size: $header_navigation_font_size;
   color: #fff;
   min-width: 67em;
@@ -275,9 +273,9 @@ table {
 
   > li { float:left; position:relative; padding:1.5em 1em; } 
 
-  .logo { height: 100%; padding:1em 0.5em; font-weight: bold; font-size: 150%; background-color: $logoGreen; @include border_radius_left; a:hover{color: inherit;} } 
-
-  #main { width: 100%; margin-top: 2.8em; left:0; background-color:$logoGreen; z-index:999; font-weight:normal; font-size: 75%; }
+  .logo { padding:1em 0.5em; font-weight: bold; font-size: 150%; background-color: $logoGreen; @include border_radius_left; a:hover{color: inherit;} 
+    #main { width: 100%; margin-top: 50%; left:0; background-color:$logoGreen; z-index:999; font-weight:normal; font-size: 75%; }
+  } 
 
   ul { padding:0; margin:0; }
 

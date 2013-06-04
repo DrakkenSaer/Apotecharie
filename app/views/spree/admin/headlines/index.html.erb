@@ -1,0 +1,94 @@
+<% content_for :page_title do %>
+  <%= t(:listing_headlines) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <div class="toolbar" data-hook="toolbar">
+    <ul class="actions header-action-links inline-menu">
+      <li id="new_headline_link">
+        <%= button_link_to t(:new_headline), new_object_url, { :remote => true, :icon => 'icon-plus', :id => 'admin_new_headline' } %>
+      </li>
+    </ul>
+  </div>
+<% end %>
+
+<% content_for :table_filter_title do %>
+  <%= t(:search) %>
+<% end %>
+
+<% content_for :table_filter do %>
+  <div data-hook="admin_headlines_sidebar">
+    
+    <%= search_form_for [:admin, @search] do |f| %>      
+
+        <%- locals = {:f => f} %>
+
+        <div class="four columns">
+          <div class="field">
+            <%= f.label :poster_cont, t(:poster) %>
+            <%= f.text_field :poster_cont, :size => 15 %>
+          </div>
+        </div>
+        <div data-hook="admin_headlines_index_search">
+          <div class="alpha nine columns">
+            <div class="field">
+              <%= f.label :title_cont, t(:title) %>
+              <%= f.text_field :title_cont, :size => 15 %>
+            </div>  
+          </div>
+          <div class="three columns omega">
+            <div class="field checkbox">
+              <label>
+                <%= f.check_box :deleted_at_null, {:checked => params[:q][:deleted_at_null].blank?}, '', '1' %>
+                <%= t(:show_deleted) %>  
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="clear"></div>
+
+        <div class="form-buttons actions filter-actions" data-hook="admin_headlines_index_search_buttons">
+          <%= button t(:search), 'icon-search' %>
+        </div>
+    <% end %>
+  </div>
+<% end %>
+
+<div id="new_headline" data-hook></div>
+
+<% if @collection.any? %>
+  <table class="index" id="listing_headlines">
+    <colgroup>
+       <col style="width: 15%;">
+       <col style="width: 60%;">
+       <col style="width: 10%;">
+    </colgroup>
+    <thead>
+      <tr data-hook="admin_headlines_index_headers">
+        <th><%= sort_link @search,:poster, t(:poster), {}, {:title => 'admin_headlines_listing_poster'} %></th>
+        <th><%= sort_link @search,:title, t(:title), { :default_order => "desc" }, {:title => 'admin_headlines_listing_title'} %></th>
+        <th data-hook="admin_headlines_index_header_actions" class="actions"></th>
+      </tr>  
+    </thead>  
+    <tbody>
+      <% @collection.each do |headline| %>
+          <tr <%= "style='color: red;'" if headline.deleted? %> id="<%= spree_dom_id headline %>" data-hook="admin_headlines_index_rows" class="<%= cycle('odd', 'even') %>">
+            <td class="align-center"><%= headline.poster rescue '' %></td>
+            <td><%= link_to headline.try(:title), edit_admin_headline_path(headline) %></td>
+            <td class="actions" data-hook="admin_headlines_index_row_actions">
+              <%= link_to_edit headline, :no_text => true, :class => 'edit' unless headline.deleted? %>
+              &nbsp;
+              <%= link_to_delete headline, :no_text => true unless headline.deleted? %>
+            </td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="no-objects-found">
+    <%= t(:no_results) %>
+  </div>
+<% end %>
+
+<%= paginate @collection %>
