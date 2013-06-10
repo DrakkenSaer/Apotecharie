@@ -1,9 +1,15 @@
 @import "./variables.css.scss"; // Must call explicit path or else extension integration tests cannot import file.
 @import "bootstrap";
+@import "bootstrap-responsive";
 
 /*--------------------------------------*/
 /* Universal
 /*--------------------------------------*/
+
+html {
+  height: 100%;
+  width: 100%;
+}
 
 li {
  list-style-type: none; 
@@ -21,6 +27,8 @@ body {
   line-height: 18px;
   background-color: $layout_background_color;
   -webkit-font-smoothing: antialiased;
+  height: 100%;
+  width: 100%;
 }
 
 /* Line style */
@@ -47,27 +55,11 @@ mark {background-color: $link_text_color; color: $layout_background_color; font-
 /*--------------------------------------*/
 
 @mixin box_sizing {
-  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-@mixin border_radius {
-  -webkit-border-radius: 1.5em;
-  -moz-border-radius: 1.5em;
-  border-radius: 1.5em;
-}
-
-@mixin border_radius_left {
-  -webkit-border-radius: 1em 0 0 1em; 
-  -moz-border-radius: 1em 0 0 1em; 
-  border-radius: 1em 0 0 1em;
-}
-
-@mixin border_radius_bottom {
-  -webkit-border-radius: 0 0 1em 1em; 
-  -moz-border-radius: 0 0 1em 1em; 
-  border-radius: 0 0 1em 1em;
+     -moz-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+       -o-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 @mixin no_border_shadow {
@@ -234,86 +226,105 @@ table {
 /* Main Nav
 /*--------------------------------------*/
 
-#login-nav {
-  margin-left:1em;
-
-  .icon-account:before{ content: "\f007"; }
-
-  &.inline-menu {
-    li {
-      display: inline-block;
-    }
+.navbar-inverse {
+  .nav li.dropdown.open > .dropdown-toggle,
+  .nav li.dropdown.active > .dropdown-toggle,
+  .nav li.dropdown.open.active > .dropdown-toggle {
+    background-color: inherit !important;
+    color: $linkGreen !important;
   }
 }
 
-#link-to-cart {
-  padding-left: 2em;
-  background: url("basket.png") no-repeat left center;
-  font-weight: bold;
-  a:hover {color: $cartPurple !important;}
-}
-
-#menu {
-  display:inline-block;
-  background-color: $darkGray;
-  z-index:1000;
-  width: 100%;
-  margin-top: 1%;
+.navbar-inner {
+  @include border-radius(0 0 1.5em 1.5em);
   font-size: $header_navigation_font_size;
-  color: #fff;
-  min-width: 67em;
-  @include border_radius;
+  color: #fff !important;
+  margin-bottom: 3em;
 
-  .float-right {
-    float:right;
-    li { display:inline-block; margin:0.9em 0.5em; }
-  }
+  .logo {
+    background-color: $logoGreen;
+    margin: 0 -3.5em 0.5em -3.5em;
 
-  a { color: inherit; &:hover { color:$linkGreen; } }
-
-  > li { float:left; position:relative; padding:1.5em 1em; } 
-
-  .logo { padding:1em 0.5em; font-weight: bold; font-size: 150%; background-color: $logoGreen; @include border_radius_left; a:hover{color: inherit;} 
-    #main { width: 100%; margin-top: 50%; left:0; background-color:$logoGreen; z-index:999; font-weight:normal; font-size: 75%; }
-  } 
-
-  ul { padding:0; margin:0; }
-
-  li ul { position:absolute; left:0; top:0; margin-top:4.4em; width:10em; line-height:1.5em; background-color:$darkGray; display:none; @include border_radius_bottom; } 
-
-  li:hover ul { display:block; } 
-
-  li ul li{ margin:0.5em 1.5em; padding: 0.5em 0;  border-top: dotted 1px $lightGray; &:first-child { border-top: none; } a { color:$darkBlue; } a:hover { color:$lightBlue; } } 
-
-  .inset {
-
-    &:before { content: ""; display: block; background: $layout_background_color; position: absolute; margin: 0 0 0 -30%; width: 3em; height: 3em; @include border_radius; z-index: 1000; }
-
-    &:after{ content: ""; display: block; background: $layout_background_color; position: absolute; margin: -64% 0 0 100%; width: 3em; height: 3em; @include border_radius; z-index: 1000; }
-
-    li:last-child{
-
-      &:before { content: ""; display: block; background: $darkGray; position: absolute; top: 0; left: -1.5em; width: 1.5em; height: 1.5em; }
-
-      &:after{ content: ""; display: block; background: $darkGray; position: absolute; top: 0; right: -1.5em; width: 1.5em; height: 1.5em; }
+    img {
+      display: block; 
+      margin: 0 auto;
     }
   }
 
-  .inset-right {
+  .wrap {
+    background-color: $logoDarkGreen;
+    height: 1em; 
+    margin: -0.8em -3.5em 0 -3.5em;
+    z-index: -1;
+  }
 
-    &:after{ content: ""; display: block; background: $layout_background_color; position: absolute; margin: -64% 0 0 100%; width: 3em; height: 3em; @include border_radius; z-index: 1000; }
+  .dropdown-toggle {
+    color: inherit !important;
+    &:hover {color: $linkGreen !important;}
+  }
 
-    li:last-child{
+  .dropdown-menu {
+    background-color: $navbarInverseBackground; 
+    margin: 0;
+    border-top: none;
+    @include border-radius(0 0 1em 1em);
+    @include no_border_shadow;
 
-      &:after{ content: ""; display: block; background: $darkGray; position: absolute; top: 0; right: -1.5em; width: 1.5em; height: 1.5em; }
+    &:after { content: none !important; }
+
+    li, ul > li {
+      margin-left: 5%;
+      width: 90%;
+      a { color:$darkBlue; &:hover { color:#fff; } }
+    }
+
+    .block {
+      background-color: $navbarInverseBackground;
+      position: absolute;
+      left: -1.5em; top: 0;
+      width: 14.5em; height: 1.5em;
+      z-index: -1;
+
+      &:before { 
+        content: ""; 
+        display: block; 
+        background: $layout_background_color; 
+        position: absolute; 
+        top: 4%; left: -21px;
+        width: 3em; height: 3em; 
+        @include border-radius(1.5em);
+      }
+      &:after { 
+        content: ""; 
+        display: block; 
+        background: $layout_background_color; 
+        position: absolute; 
+        top: 4%; left: 181px;
+        width: 3em; height: 3em; 
+        @include border-radius(1.5em);
+      }
     }
   }
-} 
 
-.searchContainer {
-  div { background-color: #fff; @include border_radius; padding: 0 0.5em; } 
-  input { @include border_radius; margin: auto; } 
-  img { vertical-align:middle; padding: 0.75em 0.3em; cursor: pointer; } 
+  #link-to-cart {
+    font-weight: bold;
+    a { color: inherit; &:hover { color: $cartPurple !important; } }
+  }
+}
+
+.search {
+  #trigger {
+    background-color: $navbarInverseSearchBackground;
+    border-color: $navbarInverseSearchBorder;
+    padding: 0.5em;
+    cursor: pointer;
+    @include border-radius(1.5em);
+  }
+
+  .search-query {
+    position: absolute;
+    right: 0;
+  }
 }
 
 /*--------------------------------------*/
@@ -321,7 +332,7 @@ table {
 /*--------------------------------------*/
 
 footer {
-  margin-top: 5em;
+  margin-top: 3em;
   padding-top: 1em;
   border-top: 1px solid $grayMediumLight;
   color: $grayLight;
@@ -1167,5 +1178,3 @@ table.order-summary {
   }
 
 }
-
-@import "bootstrap-responsive";
