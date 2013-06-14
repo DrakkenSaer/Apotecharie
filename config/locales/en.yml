@@ -740,6 +740,8 @@ en:
   product_groups: Product Groups
   product_has_no_description: This product has no description
   product_properties: "Product Properties"
+  in_stock: "In Stock"
+  product_not_currently_available: "Product not currently available"
   product_scopes:
     groups:
       price:

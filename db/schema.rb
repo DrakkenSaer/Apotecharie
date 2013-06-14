@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130601062625) do
+ActiveRecord::Schema.define(:version => 20130531221830) do
 
   create_table "spree_activators", :force => true do |t|
     t.string   "description"
@@ -146,11 +146,9 @@ ActiveRecord::Schema.define(:version => 20130601062625) do
     t.datetime "deleted_at"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "permalink"
   end
 
   add_index "spree_headlines", ["created_at"], :name => "index_spree_headlines_on_created_at"
-  add_index "spree_headlines", ["permalink"], :name => "index_spree_headlines_on_permalink"
 
   create_table "spree_inventory_units", :force => true do |t|
     t.integer  "lock_version",            :default => 0

@@ -434,7 +434,7 @@ nav#taxonomies {
   }
 }
 
-.product-section-title {
+.product-section-title, .product-stock-title {
   text-transform: uppercase;
   margin-top: 15px;
 }
@@ -460,6 +460,11 @@ span.price {
   &.diff {
     font-weight: bold;
   }
+}
+
+span.in-stock {
+  font-weight: bold;
+  font-size: $product_detail_price_font_size;
 }
 
 .taxon-title {
