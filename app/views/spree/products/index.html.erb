@@ -7,29 +7,19 @@
   <% end %>
 <% end %>
 
-<script type="text/javascript">
-  $(document).ready(function() {
-    $("#switch-view").change(function() {
-      $("#products-index").submit();
-    });
-  });
-</script>
-
-<div class="row-fluid">
-<%= form_tag({ action: "index" }, { method: "get", id: "products-index" }) do %>
-  <%= select_tag(:per_page, options_for_select(["Select items per page", ["10", 10], ["25", 25], ["50", 50], ["100", 100]], selected: "Select items per page"), { id: "switch-view" }) %>
-  <% if !params[:keywords].nil? %>
-  <%= hidden_field_tag :keywords, params[:keywords] %>
-  <% end %>
-<% end %>
-
 <% if params[:keywords] %>
-    <% if @products.empty? %>
+  <% if @products.empty? %>
+    <div class="inventory-header">
       <h6 class="search-results-title"><%= t(:no_products_found) %></h6>
-    <% else %>
-      <%= render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon } %>
-    <% end %>
+      <%= render partial: 'per_page' %>
+    </div>
+  <% else %>
+    <%= render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon } %>
+  <% end %>
 <% else %>
+  <div class="inventory-header">
     <h6 class="search-results-title"><%= t(:inventory) %></h6>
+    <%= render partial: 'per_page' %>
+  </div>
     <%= render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon } %>
 <% end %>

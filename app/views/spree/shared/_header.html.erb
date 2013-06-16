@@ -8,6 +8,16 @@
 
         $(".wrap").corner("bottom bevel cc:#fff");
 
+        $("header .trigger").click(function () {
+            if ($(".navbar-inner").is(":hidden")) {
+            $(".navbar-inner").slideDown(1000, "easeOutBounce");
+            $("#arrow").attr('class', 'caret-up');
+            } else {
+            $(".navbar-inner").slideUp("slow", "easeInCirc");
+            $("#arrow").attr('class', 'caret');
+            }
+        });
+
     });
 </script>
 
@@ -84,4 +94,5 @@
         </div>
     </div>
 </div>
+<div class="trigger"><div id="arrow" class="caret-up"></div></div>
 </header>

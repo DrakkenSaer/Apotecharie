@@ -1,0 +1,14 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#switch-view").change(function() {
+      $("#products-per-page").submit();
+    });
+  });
+</script>
+
+<%= form_tag({ action: "index" }, { method: "get", id: "products-per-page" }) do %>
+  <%= select_tag(:per_page, options_for_select(["Select items per page", ["10", 10], ["25", 25], ["50", 50], ["100", 100]], selected: "Select items per page"), { id: "switch-view" }) %>
+  <% if !params[:keywords].nil? %>
+  <%= hidden_field_tag :keywords, params[:keywords] %>
+  <% end %>
+<% end %>
