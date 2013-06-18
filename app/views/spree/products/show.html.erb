@@ -54,8 +54,8 @@
           </div>
 
           <div id="product-stock">
-            <h6 class="product-stock-title"><%= t(:in_stock) %></h6>
-            <div><span class="in-stock" itemprop="price"><%= @product.count_on_hand rescue t(:product_not_currently_available) %></span></div>
+            <h6 class="product-section-title"><%= t(:in_stock) %></h6>
+            <div><span class="in-stock"><%= @product.count_on_hand rescue t(:product_not_currently_available) %></span></div>
           </div>
 
           <div id="cart-form" data-hook="cart_form">

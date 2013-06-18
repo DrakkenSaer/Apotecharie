@@ -249,6 +249,7 @@ header {
   @include border-radius(0 0 1.5em 1.5em);
   font-size: $header_navigation_font_size;
   color: #fff !important;
+  display: none;
 
   .logo {
     background-color: $logoGreen;
@@ -273,7 +274,7 @@ header {
   }
 
   .dropdown-menu {
-    background-color: $navbarInverseBackground; 
+    background-color: $navbarInverseBackground;
     margin: 0;
     border: inherit;
     @include border-radius(0 0 1em 1em);
@@ -288,6 +289,15 @@ header {
       a { color: $blue; &:hover { color:#fff; } }
     }
 
+    .inset-circle {
+      content: ""; 
+      display: block; 
+      background: $layout_background_color; 
+      position: absolute;
+      width: 3em; height: 3em; 
+      @include border-radius(1.5em);
+    }
+
     .block {
       background-color: $navbarInverseBackground;
       position: absolute;
@@ -296,22 +306,12 @@ header {
       z-index: -1;
 
       &:before { 
-        content: ""; 
-        display: block; 
-        background: $layout_background_color; 
-        position: absolute; 
+        @extend .inset-circle;
         top: 1px; left: -21px;
-        width: 3em; height: 3em; 
-        @include border-radius(1.5em);
       }
       &:after { 
-        content: ""; 
-        display: block; 
-        background: $layout_background_color; 
-        position: absolute; 
+        @extend .inset-circle;
         top: 1px; left: 181px;
-        width: 3em; height: 3em; 
-        @include border-radius(1.5em);
       }
     }
   }
@@ -342,7 +342,7 @@ header {
 /*--------------------------------------*/
 
 footer {
-  margin-top: 10em;
+  margin-top: 3em;
   padding-top: 1em;
   border-top: 1px solid lightgray;
   color: $gray;
@@ -375,11 +375,11 @@ footer {
 nav#taxonomies {
   .taxonomy-root {
     padding: 0.5em 1em;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
     @include gradient-vertical($purple, $darkGray);
     @include border-radius(0.5em);
     color: #fff;
-    border-bottom: 1px solid lighten($body_text_color, 60);
+    border-bottom: 1px solid lighten($body_text_color, 10);
     font-size: $main_navigation_header_font_size;
   }
 
@@ -388,7 +388,47 @@ nav#taxonomies {
       a {
         font-size: $main_navigation_font_size;
         font-weight: bold;
+        color: $product_link_text_color;
+        &:hover { color: lightGray; }
       }
+    }
+  }
+}
+
+.inventory-header {
+  height: 2em;
+  padding: 0.5em 1em;
+  margin-bottom: 2em;
+  @include gradient-vertical($lightGray, $darkGray);
+  @include border-radius(0.5em);
+  font-size: $product_list_search_font_size;
+  border-bottom: 1px solid lighten($body_text_color, 10);
+
+  .search-results-title {
+    font-size: inherit;
+    color: #fff;
+    border: none;
+    float: left;
+  }
+
+  #products-per-page {
+    float: right;
+  }
+
+  .inline {
+    font-size: inherit;
+    color: $purple;
+
+    span > a {
+      text-transform: uppercase;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    a {
+      color: $product_link_text_color;
+      margin-right: 1em;
+      &:hover { color: lightGray; }
     }
   }
 }
@@ -413,19 +453,6 @@ nav#taxonomies {
 .errorExplanation {
   @extend .flash.error;
   @extend .flash;
-
-  p {
-    font-weight: normal;
-  }
-
-  ul {
-    list-style: disc outside;
-    margin-left: 30px;
-
-    li {
-      font-weight: normal;
-    }
-  }
 }
 
 
@@ -441,65 +468,39 @@ nav#taxonomies {
 
 .product-section-title {
   text-transform: uppercase;
-  margin-top: 15px;
+  margin-top: 1em;
 }
 
 .add-to-cart {
-  margin-top: 15px;
+  margin-top: 1em;
 
   input[type="number"] {
     margin-right: 3px;
-    width: 60px;
+    width: 5em;
     vertical-align: middle;
-    padding: 8px 10px;
+    padding: 0.5em 1em;
   }
 }
 
 span.price {
   font-weight: bold;
-  color: $purple !important;
+  color: $purple;
 
   &.selling {
     font-size: $product_detail_price_font_size;
-    background-color: $darkGray;
-    padding: 1em;
   }
   &.diff {
     font-weight: bold;
   }
 }
 
-.taxon-title {
-  font-size: $product_list_header_font_size;
+span.in-stock{
+  font-weight: bold;
+  font-size: $product_detail_price_font_size;
 }
 
-.inventory-header {
-  height: 2em;
-  padding: 0.5em 1em;
-  margin-bottom: 2em;
-  @include gradient-vertical($lightGray, $darkGray);
-  @include border-radius(0.5em);
-  font-size: $product_list_search_font_size;
-
-  .search-results-title {
-    font-size: inherit;
-    color: #fff;
-    border: none;
-    float: left;
-  }
-
-  #products-per-page {
-    float: right;
-  }
-
-  .inline {
-    font-size: inherit;
-    color: #999;
-
-    a {
-      &:hover {color: #fff;}
-    }
-  }
+.taxon-title, .search-results-title {
+  font-size: $product_list_header_font_size;
 }
 
 ul#products {
@@ -546,9 +547,10 @@ ul#products {
     }
 
     .price {
-      color: $link_text_color;
+      color: $purple;
+      background-color: $darkGray;
       font-size: $product_list_price_font_size;
-      padding-top: 5px;
+      padding: 1em;
       display: block;
     }
   }
@@ -569,8 +571,13 @@ ul#products {
 }
 
 #sidebar_products_search {
-  .navigation {
-    margin-bottom: 15px;
+  li.nowrap, .navigation {
+    margin-bottom: 1em;
+  }
+  
+  label.nowrap {
+    display: inline;
+    padding: 0 0.5em;
   }
 
   .filter-title {
@@ -710,7 +717,7 @@ ul#products {
 #checkout-summary {
   text-align: center;
   border: 1px solid $c_border;
-  margin-top: 23px;
+  margin-top: 1.5em;
 
   h3 {
     text-transform: uppercase;
@@ -805,6 +812,7 @@ ul#products {
 
   .steps-data {
     padding: 10px;
+    margin: auto;
 
     h6 {
       border-bottom: 1px solid $c_border;
@@ -846,13 +854,13 @@ table#cart-detail {
       }
       td[data-hook="cart_item_quantity"] {
         .line_item_quantity {
-          width: 40px;
+          width: 4em;
         }
       }
       td[data-hook="cart_item_delete"] {
         .delete {
           display: block;
-          width: 20px;
+          width: 2em;
         }
       }
     }
@@ -861,13 +869,13 @@ table#cart-detail {
 
 div[data-hook="inside_cart_form"] {
   .links {
-    margin-top: 15px;
+    margin-top: 1em;
   }
 
   #subtotal {
     text-align: right;
     text-transform: uppercase;
-    margin-top: 10px;
+    margin-top: 1em;
 
     span.order-total {
       @extend span.price;
