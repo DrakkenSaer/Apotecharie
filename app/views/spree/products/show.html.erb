@@ -1,25 +1,5 @@
 <% provide(:title, accurate_title) %>
 
-<script type="text/javascript">
-    $(document).ready(function(){
-
-      var inStock = "<%= escape_javascript(@product.count_on_hand.to_s) %>";
-
-      if (inStock <= 4 ) {
-          $(".in-stock").css("color", "red");
-      }
-
-      else if ( inStock >= 5 && inStock <= 7) {
-          $(".in-stock").css("color", "orange");
-      }
-
-      else if (inStock >= 8) {
-          $(".in-stock").css("color", "green");
-      }
-
-    });
-</script>
-
 <div data-hook="product_show" itemscope itemtype="http://schema.org/Product">
   <% @body_id = 'product-details' %>
   <div class="row-fluid">
@@ -31,12 +11,16 @@
             <%= render :partial => 'image' %>
           </div>
           <div id="thumbnails" data-hook>
-            <%= render :partial => 'thumbnails', :locals => {:product => @product} %>
+            <%= render :partial => 'thumbnails' %>
           </div>
         </div>
 
         <div data-hook="product_properties">
           <%= render :partial => 'properties' %>
+        </div>
+
+        <div data-hook="promotions">
+          <%= render :partial => 'promotions' %>
         </div>
 
       </div>
@@ -51,11 +35,6 @@
 
           <div itemprop="description" data-hook="product_description">
             <%= product_description(@product) rescue t(:product_has_no_description) %>
-          </div>
-
-          <div id="product-stock">
-            <h6 class="product-section-title"><%= t(:in_stock) %></h6>
-            <div><span class="in-stock"><%= @product.count_on_hand rescue t(:product_not_currently_available) %></span></div>
           </div>
 
           <div id="cart-form" data-hook="cart_form">

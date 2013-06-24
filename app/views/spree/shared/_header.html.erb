@@ -6,18 +6,28 @@
             $("#toggle").animate({width: 'toggle'});
         });
 
-        $(".wrap").corner("bottom bevel cc:#fff");
+        $(".wrap").corner("bottom bevel cc:#000");
+        $(".navbar-inner").css("display", "none");
+        $("header").css({ position: "fixed",
+                          width: "inherit" });
 
-        $("header").hoverIntent(
-          function () {
+        var config = {
+            sensitivity: 3,
+            interval: 100,
+            over: doOpen,
+            timeout: 1000,
+            out: doClose
+        };
+
+        function doOpen() {
             $(".navbar-inner").slideDown(1000, "easeOutBounce");
             $("#arrow").attr('class', 'caret-up');
-          },
-          function () {
+        }
+        function doClose() {
             $(".navbar-inner").slideUp("slow", "easeInCirc");
             $("#arrow").attr('class', 'caret');
-          }
-        );
+        }
+        jQuery("header").hoverIntent(config);
 
     });
 </script>
@@ -31,12 +41,12 @@
             </li>
             <li class="wrap"></li>
             <ul class="nav"> 
+                <li class="dropdown"><%= link_to "Help", help_path, class: "dropdown-toggle" %></li>
                 <% if spree_user_signed_in? %>
                     <% if spree_current_user.admin? %>
                         <li class="dropdown"><%= link_to t(:administrate), spree.admin_path, :target => '_blank', class: "dropdown-toggle", :'data-hover' => "dropdown", :'data-delay' => "0" %> 
                             <ul class="dropdown-menu">
                                 <div class="block"></div>
-                                <li><%= link_to "Overview", spree.admin_path %></li>
                                 <li><%= link_to "Order", spree.admin_orders_path %></li>
                                 <li><%= link_to "Products", spree.admin_products_path %></li>
                                 <li><%= link_to "Reports", spree.admin_reports_path %></li>
@@ -51,7 +61,7 @@
                         <ul class="dropdown-menu">
                             <div class="block"></div>
                             <li><%= link_to "Account", spree_current_user %></li>
-                            <li><%= link_to "Logout", destroy_user_session_path %></li>
+                            <li><%= link_to "Logout", destroy_spree_user_session_path %></li>
                         </ul> 
                     </li>
                 <% else %>
@@ -75,7 +85,9 @@
                         <div class="block"></div> 
                         <li><%= link_to "All items", spree.products_path %></li>
                         <% get_taxonomies.where(:name => 'Categories').each do |taxonomy| %>
-                            <%= taxons_tree(taxonomy.root, @taxon) %>
+                            <% taxonomy.root.children.map do |taxon| %>
+                                <li><%= link_to(taxon.name, seo_url(taxon)) %></li>
+                            <% end %>
                         <% end %>
                     </ul> 
                 </li>

@@ -1,5 +1,5 @@
 <% content_for :page_title do %>
-  <%= t(:listing_headlines) %>
+  <%= t(:listing_news) %>
 <% end %>
 
 <% content_for :page_actions do %>
@@ -49,7 +49,7 @@
         <div class="clear"></div>
 
         <div class="form-buttons actions filter-actions" data-hook="admin_headlines_index_search_buttons">
-          <%= button t(:search), 'icon-search' %>
+          <%= button Spree.t(:search), 'icon-search' %>
         </div>
     <% end %>
   </div>
@@ -66,8 +66,8 @@
     </colgroup>
     <thead>
       <tr data-hook="admin_headlines_index_headers">
-        <th><%= sort_link @search,:poster, t(:poster), {}, {:title => 'admin_headlines_listing_poster'} %></th>
-        <th><%= sort_link @search,:title, t(:title), { :default_order => "desc" }, {:title => 'admin_headlines_listing_title'} %></th>
+        <th><%= sort_link @search,:poster, Spree.t(:poster), {}, {:title => 'admin_headlines_listing_poster'} %></th>
+        <th><%= sort_link @search,:title, Spree.t(:title), { :default_order => "desc" }, {:title => 'admin_headlines_listing_title'} %></th>
         <th data-hook="admin_headlines_index_header_actions" class="actions"></th>
       </tr>  
     </thead>  

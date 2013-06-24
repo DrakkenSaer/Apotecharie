@@ -232,6 +232,11 @@ en:
   adjustment_total: Adjustment Total
   adjustments: Adjustments
   administration: Administration
+  new_headline: "New Headline"
+  poster: "Poster"
+  title: "Title"
+  body: "Body"
+  back_to_news_list: "Back to News list"
   admin:
     mail_methods:
       send_testmail: 'Send Testmail'
@@ -1003,6 +1008,7 @@ en:
       format: ! '%Y/%m/%d'
       js_format: 'yy/mm/dd'
     time: Time
+    brand: Brand
   spree_gateway_error_flash_for_checkout: "There was a problem with your payment information. Please check your information and try again."
   spree_inventory_error_flash_for_insufficient_quantity: "An item in your cart has become unavailable."
   ssl_will_be_used_in_development_and_test_modes: "SSL will be used in development and test mode if necessary."

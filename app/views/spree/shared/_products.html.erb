@@ -3,11 +3,11 @@
   paginated_products ||= products
 %>
 <% if products.empty? %>
-  <%= t(:no_products_found) %>
+  <%= Spree.t(:no_products_found) %>
 <% elsif params.key?(:keywords) %>
   <div class="inventory-header">
-    <h6 class="search-results-title"><%= t(:search_results, :keywords => h(params[:keywords])) %></h6>
-    <%= render partial: 'per_page' %>
+    <h6 class="search-results-title"><%= Spree.t(:search_results, :keywords => h(params[:keywords])) %></h6>
+      <%= render partial: 'per_page' %>
   </div>
 <% end %>
 
@@ -27,15 +27,13 @@
 
 <ul id="products" class="inline product-listing" data-hook>
   <% products.each do |product| %>
-    <% if product.on_display? %>
-      <li id="product_<%= product.id %>" class="columns three <%= cycle("alpha", "secondary", "", "omega secondary", :name => "classes") %>" data-hook="products_list_item" itemscope itemtype="http://schema.org/Product">
-        <%= link_to truncate(product.name, :length => 50), product, :class => 'info', :itemprop => "name", :title => product.name %>
-        <div class="product-image">
-          <%= link_to small_image(product, :itemprop => "image"), product, :itemprop => 'url' %>
-        </div>
-        <span class="price selling" itemprop="price"><%= product.price_in(current_currency).display_price %></span>
-      </li>
-    <% end %>
+    <li id="product_<%= product.id %>" class="columns three <%= cycle("alpha", "secondary", "", "omega secondary", :name => "classes") %>" data-hook="products_list_item" itemscope itemtype="http://schema.org/Product">
+      <%= link_to truncate(product.name, :length => 50), product, :class => 'info', :itemprop => "name", :title => product.name %>
+      <div class="product-image">
+        <%= link_to small_image(product, :itemprop => "image"), product, :itemprop => 'url' %>
+      </div>
+      <span class="price selling" itemprop="price"><%= display_price(product) %></span>
+    </li>
   <% end %>
   <% reset_cycle("classes") %>
 </ul>

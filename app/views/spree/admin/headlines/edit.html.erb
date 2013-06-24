@@ -1,7 +1,7 @@
 <% content_for :page_actions do %>
-  <li><%= button_link_to t(:back_to_news_list), session[:return_to] || admin_headlines_url, :icon => 'icon-arrow-left' %></li>
+  <li><%= button_link_to Spree.t(:back_to_news_list), session[:return_to] || admin_headlines_url, :icon => 'icon-arrow-left' %></li>
   <li id="new_headline_link">
-    <%= button_link_to t(:new_headline), new_object_url, { :remote => true, :icon => 'icon-plus', :id => 'admin_new_headline' } %>
+    <%= button_link_to Spree.t(:new_headline), new_object_url, { :icon => 'icon-plus', :id => 'admin_new_headline' } %>
   </li>
 <% end %>
 

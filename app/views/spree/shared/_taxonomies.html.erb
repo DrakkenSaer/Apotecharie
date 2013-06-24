@@ -1,0 +1,6 @@
+<nav id="taxonomies" class="sidebar-item" data-hook>
+  <% get_taxonomies.each do |taxonomy| %>
+    <h6 class='taxonomy-root'><%= link_to(Spree.t(taxonomy.name.downcase), seo_url(taxonomy.root)) %></h6>
+    <%= taxons_tree(taxonomy.root, @taxon, Spree::Config[:max_level_in_taxons_menu] || 1) %>
+  <% end %>
+</nav>
