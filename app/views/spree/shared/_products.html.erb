@@ -7,7 +7,7 @@
 <% elsif params.key?(:keywords) %>
   <div class="inventory-header">
     <h6 class="search-results-title"><%= Spree.t(:search_results, :keywords => h(params[:keywords])) %></h6>
-      <%= render partial: 'per_page' %>
+    <%= render partial: 'per_page' %>
   </div>
 <% end %>
 

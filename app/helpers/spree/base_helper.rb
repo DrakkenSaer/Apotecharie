@@ -90,7 +90,8 @@ module Spree
       end
       crumb_list = content_tag(:ul, raw(crumbs.flatten.map{|li| li.mb_chars}.join), :class => 'inline')
       content_tag :div, :class => 'inventory-header' do
-        content_tag(:nav, crumb_list)
+        content_tag(:nav, crumb_list) +
+        render(partial: 'spree/products/per_page')
       end
     end
 
@@ -99,19 +100,17 @@ module Spree
       content_tag :ul, class: 'taxons-list' do
         root_taxon.children.map do |taxon|
           css_class = (current_taxon && current_taxon.self_and_ancestors.include?(taxon)) ? 'current' : nil
-          if !current_taxon.children.empty?
-            content_tag :li, class: css_class do
-             if taxon == current_taxon
+          content_tag :li, class: css_class do
+            if taxon == current_taxon
               link_to(current_taxon.name, seo_url(current_taxon)) +
               taxons_tree(current_taxon, current_taxon)
-             else
-              link_to(taxon.name, seo_url(taxon))
-             end
-            end
-          else
-            content_tag :li, class: css_class do
-             link_to(taxon.name, seo_url(taxon)) +
-             taxons_tree(taxon, current_taxon, max_level - 1)
+            elsif !current_taxon.nil? && taxon == current_taxon.parent
+              current_taxon = current_taxon.parent
+              link_to(current_taxon.name, seo_url(current_taxon)) +
+              taxons_tree(current_taxon, current_taxon)
+            else
+              link_to(taxon.name, seo_url(taxon)) +
+              taxons_tree(taxon, current_taxon, max_level - 1)
             end
           end
         end.join("\n").html_safe

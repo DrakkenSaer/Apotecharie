@@ -7,16 +7,14 @@
   </div>
 <% end %>
 
-<% unless params[:id] == "categories" or params[:id] == "brand" %>
-	<div data-hook="taxon_products">
-	  <%= render :partial => 'spree/shared/products', :locals => { :products => @products, :taxon => @taxon } %>
-	</div>
-<% end %>
-
-<% if params[:id] == "categories" or params[:id] == "brand" %>
+<% if get_taxonomies.map.any? { |x| params[:id] == x.name.downcase } %>
 	<% unless params[:keywords].present? %>
 	  <div data-hook="taxon_children">
 	    <%= render :partial => 'taxon', :collection => @taxon.children %>
 	  </div>
 	<% end %>
+<% else %>
+	<div data-hook="taxon_products">
+	  <%= render :partial => 'spree/shared/products', :locals => { :products => @products, :taxon => @taxon } %>
+	</div>
 <% end %>

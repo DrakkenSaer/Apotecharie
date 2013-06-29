@@ -6,6 +6,10 @@
 /* Universal
 /*--------------------------------------*/
 
+@mixin border_bottom_shade {
+  border-bottom: 1px solid darken($purple, 40);
+}
+
 html {
   height: 100%;
   width: 100%;
@@ -93,7 +97,13 @@ dl {
     padding: 5px;
 
     &.odd {
-      background-color: lighten($body_text_color, 60);
+      background-color: lighten($purple, 10);
+      color: $linkGreen;
+    }
+
+    &.even {
+      background-color: darken($purple, 10);
+      color: $linkGreen;
     }
   }
   dt {
@@ -204,7 +214,8 @@ table {
       }
 
       &.alt, &.odd {
-        background-color: lighten($link_text_color, 50);
+        background-color: lighten($purple, 10);
+        color: $linkGreen;
       }
     }
   }
@@ -341,28 +352,24 @@ header {
 /*--------------------------------------*/
 
 footer {
-  margin-top: 3em;
-  padding-top: 1em;
-  border-top: 1px solid lightgray;
-  color: $gray;
+  margin-top: 3em; padding-top: 3em; height: 5em;
+  color: $body_text_color;
+  background-color: $darkGray;
+  @include box-shadow(inset 0 1em 1em -0.5em black);
+
   a {
     color: inherit;
-    &:hover { 
-      color: darkgray;
-    }
+    &:hover { color: $lightGray; }
   }  
-  #footer-left { 
-    float: left; 
-  }
+
+  #footer-left { float: left; }
 
   #footer-right { 
     float: right;
     ul {
       float: right;
-      li {
-        float: left;
-        margin-left: 1em;
-      }
+      li { float: left; padding: 0 1em; border-right: 1px solid; }
+      li:last-child { border: none; }
     }
   }
 }
@@ -378,7 +385,7 @@ nav#taxonomies {
     @include gradient-vertical($purple, $darkGray);
     @include border-radius(0.5em);
     color: #fff;
-    border-bottom: 1px solid lighten($body_text_color, 10);
+    @include border_bottom_shade;
     font-size: $main_navigation_header_font_size;
     a { color: inherit; }
   }
@@ -410,7 +417,7 @@ aside#sidebar {
   @include gradient-vertical($lightGray, $darkGray);
   @include border-radius(0.5em);
   font-size: $product_list_search_font_size;
-  border-bottom: 1px solid lighten($body_text_color, 10);
+  @include border_bottom_shade;
 
   .search-results-title {
     font-size: inherit;
@@ -426,6 +433,7 @@ aside#sidebar {
   .inline {
     font-size: inherit;
     color: $purple;
+    float: left;
 
     span > a {
       text-transform: uppercase;
@@ -483,10 +491,8 @@ aside#sidebar {
   margin-top: 1em;
 
   input[type="number"] {
-    margin-right: 3px;
+    margin: 0 1em 0 0;
     width: 5em;
-    vertical-align: middle;
-    padding: 0.5em 1em;
   }
 }
 
@@ -647,7 +653,7 @@ ul#products {
     }
 
     &:hover, &.selected {
-      border-color: $link_text_color;
+      border-color: $purple;
     }
   }
 }

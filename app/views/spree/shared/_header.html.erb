@@ -41,7 +41,7 @@
             </li>
             <li class="wrap"></li>
             <ul class="nav"> 
-                <li class="dropdown"><%= link_to "Help", help_path, class: "dropdown-toggle" %></li>
+                <li class="dropdown"><%= link_to "Home", root_path, class: "dropdown-toggle" %></li>
                 <% if spree_user_signed_in? %>
                     <% if spree_current_user.admin? %>
                         <li class="dropdown"><%= link_to t(:administrate), spree.admin_path, :target => '_blank', class: "dropdown-toggle", :'data-hover' => "dropdown", :'data-delay' => "0" %> 
