@@ -89,10 +89,10 @@ module Spree
         crumbs << content_tag(:li, content_tag(:span, Spree.t(:products)))
       end
       crumb_list = content_tag(:ul, raw(crumbs.flatten.map{|li| li.mb_chars}.join), :class => 'inline')
-      content_tag :div, :class => 'inventory-header' do
-        content_tag(:nav, crumb_list) +
-        render(partial: 'spree/products/per_page')
+      content_for :crumblist do
+        content_tag(:nav, crumb_list)
       end
+      render(partial: 'spree/products/inventory_header')
     end
 
     def taxons_tree(root_taxon, current_taxon, max_level = 1)

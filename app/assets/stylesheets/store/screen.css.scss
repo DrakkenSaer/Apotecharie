@@ -37,9 +37,8 @@ body {
   height: 100%;
   width: 100%;
 
-  section {
-    margin-top: 15em;
-  }
+  section { margin-top: 15em; }
+  .container { min-height: 100%; }
 }
 
 /* Line style */
@@ -97,12 +96,7 @@ dl {
     padding: 5px;
 
     &.odd {
-      background-color: lighten($purple, 10);
-      color: $linkGreen;
-    }
-
-    &.even {
-      background-color: darken($purple, 10);
+      background-color: lighten($layout_background_color, 10);
       color: $linkGreen;
     }
   }
@@ -140,13 +134,13 @@ h1, h2, h3, h4, h5, h6 {
 textarea, input[type="date"],
 input[type="datetime"], input[type="datetime-local"],
 input[type="email"], input[type="month"], input[type="number"],
-input[type="password"], input[type="tel"], input[type="search"],
-input[type="text"], input[type="time"], input[type="url"],
-input[type="week"], #switch-view {
+input[type="password"], input[type="tel"], input[type="text"], 
+input[type="time"], input[type="url"], input[type="week"], #switch-view {
   border: $default_border;
   padding: 5px 10px;
   font-family: $ff_base;
   font-size: $input_box_font_size;
+  margin: 0 1em 0 0;
 
   &:active, &:focus {
     border-color: $link_text_color;
@@ -194,7 +188,7 @@ p {
 /*--------------------------------------*/
 table {
   thead {
-    background-color: lighten($body_text_color, 60);
+    background-color: lighten($layout_background_color, 10);
     text-transform: uppercase;
 
     tr {
@@ -206,7 +200,6 @@ table {
 
   tbody, tfoot {
     tr {
-      border-bottom: 1px solid lighten($body_text_color, 60);
 
       td {
         vertical-align: middle;
@@ -214,8 +207,7 @@ table {
       }
 
       &.alt, &.odd {
-        background-color: lighten($purple, 10);
-        color: $linkGreen;
+        background-color: lighten($layout_background_color, 10);
       }
     }
   }
@@ -352,25 +344,24 @@ header {
 /*--------------------------------------*/
 
 footer {
-  margin-top: 3em; padding-top: 3em; height: 5em;
+  padding-top: 3em; height: 4em;
   color: $body_text_color;
   background-color: $darkGray;
   @include box-shadow(inset 0 1em 1em -0.5em black);
 
   a {
     color: inherit;
-    &:hover { color: $lightGray; }
-  }  
+    &:hover { color: $lightGray; background: none !important; }
+  } 
 
-  #footer-left { float: left; }
+  .pull-right { 
+    li { float: left; padding: 0 1em; border-right: 1px solid; }
+    li:last-child { border: none; }
+  }
 
-  #footer-right { 
-    float: right;
-    ul {
-      float: right;
-      li { float: left; padding: 0 1em; border-right: 1px solid; }
-      li:last-child { border: none; }
-    }
+  .dropup > .dropdown-menu {
+    margin: 0 0 1em -32em; 
+    width: 37em !important;
   }
 }
 
@@ -491,7 +482,6 @@ aside#sidebar {
   margin-top: 1em;
 
   input[type="number"] {
-    margin: 0 1em 0 0;
     width: 5em;
   }
 }
@@ -629,8 +619,8 @@ ul#products {
 
 #product-description {
   .product-title {
-    border-bottom: 1px solid lighten($body_text_color, 60);
-    margin-bottom: 15px;
+    text-transform: uppercase;
+    margin-bottom: 1em;
     color: $product_title_text_color;
     font-size: $product_detail_name_font_size;
   }
@@ -859,6 +849,9 @@ p[data-hook="use_billing"] {
 /*--------------------------------------*/
 table#cart-detail {
   width: 100%;
+  border-bottom: 1px solid $c_border;
+  display: block; 
+  padding: 1em;
   tbody#line_items {
     tr {
 
@@ -886,20 +879,55 @@ div[data-hook="inside_cart_form"] {
     margin-top: 1em;
   }
 
-  #subtotal {
-    text-align: right;
-    text-transform: uppercase;
-    margin-top: 1em;
+  #cart-end {
+    margin: 1em 7em 1em 1em;
+    height: 3em;
 
-    span.order-total {
-      @extend span.price;
+    #cart-actions {
+      float: left;
+    }
+
+    #subtotal {
+      text-transform: uppercase;
+      float: right;
+
+      span.order-total {
+        @extend span.price;
+      }
     }
   }
 }
 
-#empty-cart {
-  margin-top: 15px;
-  float: right;
+#checkout {
+  margin: 0 auto;
+  background-color: $darkGray;
+  text-align: center;
+  width: 80%;
+  padding: 2em 0;
+  text-transform: uppercase;
+  font-weight: bold;
+
+  a { color: #fff; &:hover { color: $lightGray; } }
+
+  button, .button {
+    padding: 1em;
+    width: 15em;
+    margin: 0.5em auto;
+    font-weight: inherit;
+    @include gradientBar($purple, lighten($purple, 5), $textColor: #fff, $textShadow: 0 -1px 0 rgba(0,0,0,.25));
+    display: block;
+    &:hover { color: white; }
+  }
+
+  #total {
+    color: #fff;
+    font-size: 125%;
+    margin: 0.5em 0;
+    span.order-total {
+      @extend span.price;
+      font-size: 140%;
+    }
+  }
 }
 
 /*--------------------------------------*/

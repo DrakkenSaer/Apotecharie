@@ -5,10 +5,8 @@
 <% if products.empty? %>
   <%= Spree.t(:no_products_found) %>
 <% elsif params.key?(:keywords) %>
-  <div class="inventory-header">
-    <h6 class="search-results-title"><%= Spree.t(:search_results, :keywords => h(params[:keywords])) %></h6>
-    <%= render partial: 'per_page' %>
-  </div>
+  <% provide(:inventory, Spree.t(:search_results, :keywords => h(params[:keywords]))) %>
+  <%= render partial: 'inventory_header' %>
 <% end %>
 
 <% if products.any? %>
