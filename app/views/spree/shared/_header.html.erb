@@ -6,106 +6,46 @@
             $("#toggle").animate({width: 'toggle'});
         });
 
-        $(".wrap").corner("bottom bevel cc:#000");
-        $(".navbar-inner").css("display", "none");
-        $("header").css({ position: "fixed",
-                          width: "inherit" });
-
-        var config = {
-            sensitivity: 3,
-            interval: 100,
-            over: doOpen,
-            timeout: 1000,
-            out: doClose
-        };
-
-        function doOpen() {
-            $(".navbar-inner").slideDown(1000, "easeOutBounce");
-            $("#arrow").attr('class', 'caret-up');
-        }
-        function doClose() {
-            $(".navbar-inner").slideUp("slow", "easeInCirc");
-            $("#arrow").attr('class', 'caret');
-        }
-        jQuery("header").hoverIntent(config);
-
     });
 </script>
 
 <header>
-<div class="navbar navbar-inverse">
-    <div class="navbar-inner">
-        <div class="container-fluid">
-            <li class="logo">
-                <%= logo %>
-            </li>
-            <li class="wrap"></li>
-            <ul class="nav"> 
-                <li class="dropdown"><%= link_to "Home", root_path, class: "dropdown-toggle" %></li>
-                <% if spree_user_signed_in? %>
-                    <% if spree_current_user.admin? %>
-                        <li class="dropdown"><%= link_to t(:administrate), spree.admin_path, :target => '_blank', class: "dropdown-toggle", :'data-hover' => "dropdown", :'data-delay' => "0" %> 
-                            <ul class="dropdown-menu">
-                                <div class="block"></div>
-                                <li><%= link_to "Order", spree.admin_orders_path %></li>
-                                <li><%= link_to "Products", spree.admin_products_path %></li>
-                                <li><%= link_to "Reports", spree.admin_reports_path %></li>
-                                <li><%= link_to "Configuration", spree.edit_admin_general_settings_path %></li>
-                                <li><%= link_to "News", spree.admin_headlines_path %></li>
-                                <li><%= link_to "Promotionals", spree.admin_promotions_path %></li>
-                                <li><%= link_to "Users", spree.admin_users_path %></li>
-                            </ul> 
-                        </li>
-                    <% end %>
-                    <li class="dropdown"><%= link_to "Account", spree_current_user, class: "dropdown-toggle", :'data-hover' => "dropdown", :'data-delay' => "0" %> 
-                        <ul class="dropdown-menu">
-                            <div class="block"></div>
-                            <li><%= link_to "Account", spree_current_user %></li>
-                            <li><%= link_to "Logout", destroy_spree_user_session_path %></li>
-                        </ul> 
-                    </li>
-                <% else %>
-                    <li class="dropdown"><%= link_to "Login", login_path, class: "dropdown-toggle", :'data-hover' => "dropdown", :'data-delay' => "0" %> 
-                        <ul class="dropdown-menu">
-                            <div class="block"></div>
-                            <li><%= link_to "Login", login_path %></li>
-                            <li><%= link_to "Sign up", signup_path %></li>
-                        </ul> 
-                    </li>
+    <div class="container-fluid">
+        <ul class="nav pull-left">
+            <%= dropdown(:home, root_path) %>
+            <% if spree_user_signed_in? %>
+                <% if spree_current_user.admin? %>
+                    <%= dropdown(:administrate, spree.admin_path, 
+                        {order: spree.admin_orders_path, 
+                        products: spree.admin_products_path, 
+                        reports: spree.admin_reports_path, 
+                        configuration: spree.edit_admin_general_settings_path, 
+                        news: spree.admin_headlines_path, 
+                        promotionals: spree.admin_promotions_path, 
+                        users: spree.admin_users_path}) %>
                 <% end %>
-                <li class="dropdown"><%= link_to "Help", help_path, class: "dropdown-toggle", :'data-hover' => "dropdown", :'data-delay' => "0" %>
-                    <ul class="dropdown-menu">
-                        <div class="block"></div>
-                        <li><%= link_to "FAQ", help_path %></li> 
-                        <li><%= link_to "Contact us", contact_path %></li>
-                    </ul> 
-                </li>
-                <li class="dropdown"><%= link_to "Inventory", products_path, class: "dropdown-toggle", :'data-hover' => "dropdown", :'data-delay' => "0" %> 
-                    <ul class="dropdown-menu">
-                        <div class="block"></div> 
-                        <li><%= link_to "All items", spree.products_path %></li>
-                        <% get_taxonomies.where(:name => 'Categories').each do |taxonomy| %>
-                            <% taxonomy.root.children.map do |taxon| %>
-                                <li><%= link_to(taxon.name, seo_url(taxon)) %></li>
-                            <% end %>
-                        <% end %>
-                    </ul> 
-                </li>
-            </ul>
-            <ul class="nav pull-right">
-                <li class="search"> 
-                  <%= form_tag products_url, method: :get, :class => 'navbar-search' do %>
-                    <input type="search" id="toggle" class="search-query" name="keywords" placeholder="Search">
-                    <%= image_tag("store/magnifier.png", id: "trigger", alt: "Search")%>
-                    <% if !params[:per_page].nil? %>
-                        <%= hidden_field_tag :per_page, params[:per_page] %>
-                    <% end %>
-                  <% end %>
-                </li> 
-                <li id="link-to-cart"><%= link_to_cart %></li>
-            </ul>
-        </div>
+                <%= dropdown(:account, spree_current_user, 
+                    {account: spree_current_user, 
+                    logout: destroy_spree_user_session_path}) %>
+            <% else %>
+                <%= dropdown(:login, login_path, 
+                    {login: login_path, 
+                    sign_up: signup_path}) %>
+            <% end %>
+            <%= dropdown(:help, help_path, 
+                {faq: help_path, 
+                contact_us: contact_path}) %>
+            <%= dropdown(:inventory, products_path, {all_items: spree.products_path}) %>
+        </ul>
+        <ul class="nav pull-right">
+          <%= form_tag products_url, method: :get, :class => 'navbar-search' do %>
+            <input type="search" id="toggle" class="search-query" name="keywords" placeholder="Search">
+            <%= image_tag("store/magnifier.png", id: "trigger", alt: "Search")%>
+            <% if !params[:per_page].nil? %>
+                <%= hidden_field_tag :per_page, params[:per_page] %>
+            <% end %>
+          <% end %>
+          <li id="link-to-cart"><%= link_to_cart %></li>
+        </ul>
     </div>
-</div>
-<div class="trigger"><div id="arrow" class="caret"></div></div>
 </header>

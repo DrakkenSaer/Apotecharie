@@ -12,9 +12,21 @@ module Spree
       return false
     end
 
-    def link_to_cart(text = nil)
-      return "" if current_spree_page?(spree.cart_path)
+    def dropdown(name, link, items={}, taxon_root=nil)
+      unless taxon_root.nil?
+        taxon_links = get_taxonomies.where(:name => taxon_root).map {|taxonomy| taxonomy.root.children.map {|taxon| {taxon.name.downcase => seo_url(taxon)} }}
+        items.merge(taxon_links)
+      end
+      menu_item = items.map { |x, y| content_tag(:li, link_to(Spree.t(x), y)) }
+      content_tag :li, class: "dropdown" do
+        link_to(Spree.t(name), link, class: "dropdown-toggle", :'data-hover' => "dropdown", :'data-delay' => "0") +
+        unless items.empty? 
+          content_tag(:ul, menu_item.join.html_safe, class: "dropdown-menu")
+        end
+      end
+    end
 
+    def link_to_cart(text = nil)
       text = text ? h(text) : Spree.t('cart')
       css_class = nil
 
