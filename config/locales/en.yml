@@ -1009,6 +1009,15 @@ en:
       js_format: 'yy/mm/dd'
     time: Time
     brand: Brand
+    #customer variables
+    faq: "FAQ"
+    contact_us: "Contact Us"
+    sign_up: "Sign Up"
+    help: "Help"
+    all_items: "All Items"
+    bags: "Bags"
+    mugs: "Mugs"
+    clothing: "Clothing"
   spree_gateway_error_flash_for_checkout: "There was a problem with your payment information. Please check your information and try again."
   spree_inventory_error_flash_for_insufficient_quantity: "An item in your cart has become unavailable."
   ssl_will_be_used_in_development_and_test_modes: "SSL will be used in development and test mode if necessary."

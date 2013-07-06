@@ -35,7 +35,7 @@
             <%= dropdown(:help, help_path, 
                 {faq: help_path, 
                 contact_us: contact_path}) %>
-            <%= dropdown(:inventory, products_path, {all_items: spree.products_path}) %>
+            <%= dropdown(:inventory, products_path, {all_items: spree.products_path}, "Categories") %>
         </ul>
         <ul class="nav pull-right">
           <%= form_tag products_url, method: :get, :class => 'navbar-search' do %>

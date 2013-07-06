@@ -14,12 +14,14 @@ module Spree
 
     def dropdown(name, link, items={}, taxon_root=nil)
       unless taxon_root.nil?
-        taxon_links = get_taxonomies.where(:name => taxon_root).map {|taxonomy| taxonomy.root.children.map {|taxon| {taxon.name.downcase => seo_url(taxon)} }}
-        items.merge(taxon_links)
+        taxon_links = get_taxonomies.where(:name => taxon_root).map {|taxonomy| taxonomy.root.children.map {|taxon| taxon}}.flatten
+        menu_item = items.merge(Hash[taxon_links.map {|t| [t.name.downcase, seo_url(t)]}]).map { |x, y| content_tag(:li, link_to(Spree.t(x), y)) }
+      else
+        menu_item = items.map { |x, y| content_tag(:li, link_to(Spree.t(x), y)) }
       end
-      menu_item = items.map { |x, y| content_tag(:li, link_to(Spree.t(x), y)) }
       content_tag :li, class: "dropdown" do
-        link_to(Spree.t(name), link, class: "dropdown-toggle", :'data-hover' => "dropdown", :'data-delay' => "0") +
+        css_class = (current_spree_page?(link)) ? 'dropdown-toggle current' : 'dropdown-toggle'
+        link_to(Spree.t(name), link, class: css_class, :'data-hover' => "dropdown", :'data-delay' => "0") +
         unless items.empty? 
           content_tag(:ul, menu_item.join.html_safe, class: "dropdown-menu")
         end
