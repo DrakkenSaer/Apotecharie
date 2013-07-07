@@ -1,8 +1,8 @@
-<% provide(:title, 'News') %>
+<% provide(:title, :news) %>
 <h1>News</h1>
 
-<ul>
+<div id="headlines_wrapper">
     <%= render @headlines %>
-</ul>
+</div>
 
 <%= paginate @headlines %>

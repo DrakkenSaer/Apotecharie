@@ -1,10 +1,11 @@
+<% provide(:title, :cart) %>
 <% @body_id = 'cart' %>
 
 <h1><%= Spree.t(:shopping_cart) %></h1>
 
 <% if @order.line_items.empty? %>
 
-  <div id="checkout" data-hook="empty_cart">
+  <div id="checkout" class="bleak" data-hook="empty_cart">
     <p><%= Spree.t(:your_cart_is_empty) %></p>
     <p><%= link_to Spree.t(:continue_shopping), products_path, :class => 'button' %></p>
   </div>
@@ -32,19 +33,17 @@
           </div>
         </div>
 
-        <div id="checkout" data-hook="cart_buttons">
+        <div id="checkout" class="bleak" data-hook="cart_buttons">
           <div id="total"><%= Spree.t(:total) %>: <span class="order-total"><%= @order.display_total.to_html %></span></div>
           Ships within 1-2 business days.
           <%= button_tag :id => 'checkout-link', :name => 'checkout' do %>
-            <%= Spree.t(:place_your_order) %>
+            <%= Spree.t(:place_order) %>
           <% end %>
           <%= Spree.t(:or) %>
-          <%= link_to Spree.t(:continue_shopping), products_path %>
+          <%= link_to Spree.t(:continue_shopping), products_path %> |
+          <%= link_to Spree.t(:empty_cart), empty_cart_path, method: :put %>
         </div>
       </div>
     <% end %>
   </div>
-
-  <%= button_to Spree.t(:empty_cart), empty_cart_path, method: :put %>
-
 <% end %>

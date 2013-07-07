@@ -1,21 +1,24 @@
-<table class="content_table" align="center" width="80%">
-	<tr>
-		<td align="center">
-			<h4><%= headline.title %></h4>
+<table>
+	<tr  align="center">
+		<td>
+			<h4><%= headline.title.capitalize %></h4>
 		</td>
 	</tr>
-	<tr>
+	<tbody>
 		<td>
 			<article>
-				<%= headline.body %>
+				<%= wrap(headline.body) %>
 			</article>
 		</td>
-	</tr>
-	<tr>
+	</tbody>
+	<tfoot>
 		<td>
-			<small>
-				Posted by <%= headline.poster %>
+			<small class="left">
+				<%= Spree.t(:poster) + " " %><%= headline.poster.empty? ? "Anonymous" : headline.poster %>
+			</small>
+			<small class="right">
+				<%= headline.created_at %>
 			</small>
 		</td>
-	</tr>
+	</tfoot>
 </table>

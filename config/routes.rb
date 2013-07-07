@@ -7,7 +7,7 @@ Apotecharie::Application.routes.draw do
     match '/about',    	to: 'home#about'
     match '/help',     	to: 'home#help'
     match '/users/:id',	to: 'users#show'
-    resources :headlines, only: [:show, :index]
+    resources :headlines, only: [:index]
 
   	namespace :admin do
   		resources :headlines do

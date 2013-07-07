@@ -3,9 +3,9 @@ module ApplicationHelper
 	def full_title(last)
 		first = "Apotecharie"
 		if last.empty?
-			first
+			Spree.t(first.downcase)
 		else
-			"#{first} | #{last}"
+			"#{Spree.t(first.downcase)} | #{Spree.t(last.downcase)}"
 		end
 	end
 	
@@ -15,7 +15,7 @@ module ApplicationHelper
 
 	private
 
-		def wrap_long_string(text, max_width = 30)
+		def wrap_long_string(text, max_width = 142)
 			zero_width_space = "&#8203;"
 			regex = /.{1,#{max_width}}/
 					(text.length < max_width) ? text : 

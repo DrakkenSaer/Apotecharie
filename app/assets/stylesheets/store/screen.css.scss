@@ -227,16 +227,17 @@ header {
   .dropdown {
     display: inline-block;
     .dropdown-menu {
-      margin: 0 3em;
+      margin: 0 2em;
+      a:hover { color: $linkGreen; }
     }
   }
 
   .dropdown-toggle {
     color: $title_text_color;
     text-transform: uppercase;
-    font-weight: bold;
     font-size: 120%;
-    padding: 0 3em;
+    padding: 0 2em;
+    font-family: $ff_berkshire;
   }
 
   .current {
@@ -786,8 +787,15 @@ ul#products {
 p[data-hook="use_billing"] {
   float: right;
   margin-top: -38px;
-  background-color: white;
   padding: 5px;
+}
+
+#checkout {
+  table { width: 100%; }
+  form { 
+    background-color: $darkGray;
+    border-color: $lightGray;
+  }
 }
 
 /*--------------------------------------*/
@@ -843,9 +851,11 @@ div[data-hook="inside_cart_form"] {
   }
 }
 
-#checkout {
+.bleak {
   margin: 0 auto;
   background-color: $darkGray;
+  border: 1px solid $lightGray;
+  @include border-radius(1em);
   text-align: center;
   width: 80%;
   padding: 2em 0;
@@ -853,16 +863,6 @@ div[data-hook="inside_cart_form"] {
   font-weight: bold;
 
   a { color: #fff; &:hover { color: $lightGray; } }
-
-  button, .button {
-    padding: 1em;
-    width: 15em;
-    margin: 0.5em auto;
-    font-weight: inherit;
-    @include gradientBar($purple, lighten($purple, 5), $textColor: #fff, $textShadow: 0 -1px 0 rgba(0,0,0,.25));
-    display: block;
-    &:hover { color: white; }
-  }
 
   #total {
     color: #fff;
@@ -875,10 +875,23 @@ div[data-hook="inside_cart_form"] {
   }
 }
 
+.bleak, #checkout {
+  button, .button {
+    padding: 1em;
+    width: 15em;
+    margin: 0.5em auto;
+    font-weight: inherit;
+    @include gradientBar($purple, lighten($purple, 5), $textColor: #fff, $textShadow: 0 -1px 0 rgba(0,0,0,.25));
+    display: block;
+    &:hover { color: white; }
+  }
+}
+
 /*--------------------------------------*/
 /* Account
 /*--------------------------------------*/
 #existing-customer, #new-customer, #forgot-password {
+  @extend .bleak;
   h6 {
     text-transform: uppercase;
     color: $c_colored;
@@ -933,6 +946,38 @@ table.order-summary {
         }
       }
     }
+  }
+}
+
+/*--------------------------------------*/
+/* Pagination (Kaminari)
+/*--------------------------------------*/
+.pagination {
+  font-family: $ff_berkshire;
+  a { 
+    background-color: $layout_background_color !important;
+    color: $title_text_color;
+    border: none !important;
+  }
+  .active {
+    font-size: 200%;
+  }
+}
+
+/*--------------------------------------*/
+/* News
+/*--------------------------------------*/
+#headlines_wrapper {
+  background-color: $darkGray;
+  border: 1px solid $lightGray;
+  table {
+    width: 80%;
+    margin: 1em auto;
+    td, tr {width: 100%;}
+    tfoot {@extend thead;}
+    .left {float: left;}
+    .right {float: right;}
+    article {margin: 1em 0;}
   }
 }
 

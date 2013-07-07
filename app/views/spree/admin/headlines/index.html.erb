@@ -40,7 +40,7 @@
             <div class="field checkbox">
               <label>
                 <%= f.check_box :deleted_at_null, {:checked => params[:q][:deleted_at_null].blank?}, '', '1' %>
-                <%= t(:show_deleted) %>  
+                <%= t(:show_deleted) %>
               </label>
             </div>
           </div>
@@ -61,13 +61,15 @@
   <table class="index" id="listing_headlines">
     <colgroup>
        <col style="width: 15%;">
-       <col style="width: 60%;">
+       <col style="width: 25%;">
+       <col style="width: 35%;">
        <col style="width: 10%;">
     </colgroup>
     <thead>
       <tr data-hook="admin_headlines_index_headers">
-        <th><%= sort_link @search,:poster, Spree.t(:poster), {}, {:title => 'admin_headlines_listing_poster'} %></th>
+        <th><%= sort_link @search,:poster, Spree.t(:poster), {}, {:poster => 'admin_headlines_listing_poster'} %></th>
         <th><%= sort_link @search,:title, Spree.t(:title), { :default_order => "desc" }, {:title => 'admin_headlines_listing_title'} %></th>
+        <th><%= Spree.t(:description) %></th>
         <th data-hook="admin_headlines_index_header_actions" class="actions"></th>
       </tr>  
     </thead>  
@@ -76,6 +78,7 @@
           <tr <%= "style='color: red;'" if headline.deleted? %> id="<%= spree_dom_id headline %>" data-hook="admin_headlines_index_rows" class="<%= cycle('odd', 'even') %>">
             <td class="align-center"><%= headline.poster rescue '' %></td>
             <td><%= link_to headline.try(:title), edit_admin_headline_path(headline) %></td>
+            <td align="center">Click the edit button to see the full description of the post!</td>
             <td class="actions" data-hook="admin_headlines_index_row_actions">
               <%= link_to_edit headline, :no_text => true, :class => 'edit' unless headline.deleted? %>
               &nbsp;
