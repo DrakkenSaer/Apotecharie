@@ -1,11 +1,10 @@
 module ApplicationHelper
 	
 	def full_title(last)
-		first = "Apotecharie"
 		if last.empty?
-			Spree.t(first.downcase)
+			title
 		else
-			"#{Spree.t(first.downcase)} | #{Spree.t(last.downcase)}"
+			"#{title} | #{Spree.t(last.downcase)}"
 		end
 	end
 	

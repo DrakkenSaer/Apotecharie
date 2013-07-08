@@ -791,6 +791,7 @@ p[data-hook="use_billing"] {
 }
 
 #checkout {
+  @extend .button-class;
   table { width: 100%; }
   form { 
     background-color: $darkGray;
@@ -859,6 +860,7 @@ div[data-hook="inside_cart_form"] {
 }
 
 .bleak {
+  @extend .button-class;
   margin: 0 auto;
   background-color: $darkGray;
   border: 1px solid $lightGray;
@@ -882,7 +884,7 @@ div[data-hook="inside_cart_form"] {
   }
 }
 
-.bleak, #checkout {
+.button-class {
   button, .button {
     padding: 1em;
     width: 15em;
@@ -926,9 +928,6 @@ div[data-hook="inside_cart_form"] {
 /*--------------------------------------*/
 /* Order
 /*--------------------------------------*/
-#order_summary {
-  margin-top: 0;
-}
 
 #order {
   p[data-hook="links"] {
@@ -955,6 +954,16 @@ table.order-summary {
     }
   }
 }
+
+fieldset#order_summary {
+  margin-top: 0;
+  @extend .button-class;
+  background-color: $darkGray;
+  overflow: hidden;
+  h1 {text-align: center;}
+}
+
+div.steps-data div.columns {margin: 0 2em;}
 
 /*--------------------------------------*/
 /* Pagination (Kaminari)

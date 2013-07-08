@@ -3,8 +3,8 @@
 <%= csrf_meta_tags %>
 
 <title>
-  <%= "Apotecharie #{t('administration')}: " %>
-  <%= t(controller.controller_name, :default => controller.controller_name.titleize) %>
+  <%= "#{title + " " + Spree.t('administration')}: " %>
+  <%= Spree.t(controller.controller_name, :default => controller.controller_name.titleize) %>
 </title>
 
 <!-- Get "Open Sans" font from Google -->

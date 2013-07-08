@@ -1,20 +1,20 @@
 <div>
   <%= f.field_container :body do %>
-    <%= f.label :body, t(:body) %> <span class="required">*</span><br />
+    <%= f.label :body, Spree.t(:body) %> <span class="required">*</span><br />
     <%= f.text_area :body, :class => 'fullwidth' %>
     <%= f.error_message_on :body %>
   <% end %>
 </div>
 <div class="four columns">
   <%= f.field_container :title do %>
-    <%= f.label :title, t(:title) %> <span class="required">*</span><br />
+    <%= f.label :title, Spree.t(:title) %> <span class="required">*</span><br />
     <%= f.text_field :title, :class => 'fullwidth' %>
     <%= f.error_message_on :title %>
   <% end %>
 </div>
 <div class="four columns">
   <%= f.field_container :poster do %>
-    <%= f.label :poster, t(:poster) %><br />
+    <%= f.label :poster, Spree.t(:poster) %><br />
     <%= f.text_field :poster, :size => 16, :class => 'fullwidth' %>
     <%= f.error_message_on :poster %>
   <% end %>  
