@@ -827,17 +827,24 @@ table#cart-detail {
   }
 }
 
+table#adjustments_table {
+  width: 95%;
+  margin: 0 auto;
+  tr, td {width: 92.5%;}
+}
+
 div[data-hook="inside_cart_form"] {
   .links {
     margin-top: 1em;
   }
 
   #cart-end {
-    margin: 1em 7em 3em 1em;
+    margin-right: 3em;
     height: 3em;
 
     #cart-actions {
       float: left;
+      margin-left: 2em;
     }
 
     #subtotal {

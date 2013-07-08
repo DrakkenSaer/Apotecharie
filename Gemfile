@@ -54,4 +54,4 @@ end
 # gem 'capistrano'
 
 # To use debugger
-# gem 'debugger'gem 'spree', '1.3.2'
+# gem 'debugger'
