@@ -8,12 +8,18 @@
   </td>
   <td class="cart-item-description" data-hook="cart_item_description">
     <h4><%= link_to variant.product.name, product_path(variant.product) %></h4>
+    <%= line_item_description(variant) %>
+  </td>
+  <td class="cart-item-available" data-hook="cart_item_available">
     <% if @order.insufficient_stock_lines.include? line_item %>
       <span class="out-of-stock">
         <%= Spree.t(:out_of_stock) %>&nbsp;&nbsp;<br />
       </span>
+    <% else %>
+      <span class="in-stock">
+        <%= Spree.t(:in_stock) %>&nbsp;&nbsp;<br />
+      </span>
     <% end %>
-    <%= line_item_description(variant) %>
   </td>
   <td class="cart-item-options" data-hook="cart_item_options">
     <% if variant.options_text.empty? %>
