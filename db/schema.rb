@@ -666,8 +666,8 @@ ActiveRecord::Schema.define(:version => 20130622223099) do
     t.boolean  "is_master",                                   :default => false
     t.integer  "product_id"
     t.decimal  "cost_price",    :precision => 8, :scale => 2
-    t.integer  "position"
     t.string   "cost_currency"
+    t.integer  "position"
   end
 
   add_index "spree_variants", ["product_id"], :name => "index_spree_variants_on_product_id"

@@ -9,7 +9,7 @@ gem 'spree_auth_devise', :github => 'spree/spree_auth_devise', :branch => '2-0-s
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development, :test do
-  gem 'sqlite3', '1.3.5'
+  gem 'mysql2'
   gem 'rspec-rails', '2.11.0'
   # gem 'guard-rspec', '1.2.1'
   # gem 'guard-spork', '1.2.0'  
@@ -41,7 +41,7 @@ group :test do
 end
 
 group :production do
-  gem 'pg', '0.12.2'
+  gem 'mysql2'
 end
 
 # To use Jbuilder templates for JSON

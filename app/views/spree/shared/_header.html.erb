@@ -26,7 +26,7 @@
                 <% end %>
                 <%= dropdown(:account, spree_current_user, 
                     {account: spree_current_user, 
-                    logout: destroy_spree_user_session_path}) %>
+                    logout: logout_path}) %>
             <% else %>
                 <%= dropdown(:login, login_path, 
                     {login: login_path, 

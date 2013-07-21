@@ -407,6 +407,7 @@ aside#sidebar {
 .errorExplanation {
   @extend .flash.error;
   @extend .flash;
+  h2 { color: darkred; }
 }
 
 
