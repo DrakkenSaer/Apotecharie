@@ -13,6 +13,7 @@ Apotecharie::Application.routes.draw do
       match '/forgot',   to: 'user_passwords#new', method: :get
       match '/password', to: 'user_passwords#create', method: :post
       match '/sign_in',  to: 'user_sessions#create', method: :post
+      match '/new_user', to: 'user_registrations#create', method: :post 
     end
 
   	namespace :admin do

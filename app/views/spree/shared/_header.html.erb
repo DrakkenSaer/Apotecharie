@@ -39,7 +39,7 @@
         </ul>
         <ul class="nav pull-right">
           <%= form_tag products_url, method: :get, :class => 'navbar-search' do %>
-            <input type="search" id="toggle" class="search-query" name="keywords" placeholder="Search">
+            <%= search_field_tag "keywords", params[:keywords], id: "toggle", class: "search-query", placeholder: "Search" %>
             <%= image_tag("store/magnifier.png", id: "trigger", alt: "Search")%>
             <% if !params[:per_page].nil? %>
                 <%= hidden_field_tag :per_page, params[:per_page] %>
