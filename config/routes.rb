@@ -3,6 +3,8 @@ Apotecharie::Application.routes.draw do
   mount Spree::Core::Engine, :at => '/'
 
   Spree::Core::Engine.routes.draw do
+    filter :pagination, :locale
+    
     match '/contact',  	to: 'home#contact'
     match '/about',    	to: 'home#about'
     match '/help',     	to: 'home#help'

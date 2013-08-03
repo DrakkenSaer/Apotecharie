@@ -978,8 +978,9 @@ div.steps-data div.columns {margin: 0 2em;}
     background-color: $layout_background_color !important;
     color: $title_text_color;
     border: none !important;
+    margin: 0 1em;
   }
-  .active {
+  .current {
     font-size: 200%;
   }
 }
