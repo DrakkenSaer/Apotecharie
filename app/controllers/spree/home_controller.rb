@@ -4,6 +4,7 @@ module Spree
     respond_to :html
 
     def index
+        @products = Product.limit(10)
     end
 
     def about

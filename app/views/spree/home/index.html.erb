@@ -1,0 +1,11 @@
+<div id="sliderFrame">
+    <div id="slider">
+        <% @products.each do |product| %>
+            <%= link_to large_image(product, :itemprop => "image"), product, :itemprop => 'url' %>
+        <% end %>
+    </div>
+</div>
+
+<%= javascript_tag do %>
+    imageSlider.thumbnailPreview(function (thumbIndex) { return ""; });
+<% end %>
