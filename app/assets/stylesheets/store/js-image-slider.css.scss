@@ -1,13 +1,13 @@
-/* http://www.menucool.com */
+@import "./variables.css.scss";
 
-#sliderFrame {position:absolute;width:130%;right:-15%;background-color:#202020;} /*remove the "margin:0 auto;" if you want to align the whole slider to the left side*/
+#sliderFrame {position:relative;width:127.5%;background-color:$darkGray;margin:0 0 5em -14%;}
         
 #slider {
-    width:900px;height:306px;/* Make it the same size as your images */
+    max-width:900px;width:70%;height:300px;/* Make it the same size as your images */
 	background:#fff url(loading.gif) no-repeat 50% 50%;
 	position:relative;
 	margin:0 auto;/*make the image slider center-aligned */
-	box-shadow: 0px 1px 5px #999999;
+	box-shadow: 0px 1px 5px gray;
 }
 #slider img, #slider>b, #slider a>b{
 	position:absolute;
@@ -27,10 +27,10 @@
 /* Caption styles */
 div.mc-caption-bg, div.mc-caption-bg2 {
 	position:absolute;
-	width:440px;
+	max-width:440px;width:50%;
 	height:auto;
 	padding:10px;
-	left:230px; /*if the caption needs to be aligned from right, specify by right instead of left. i.e. right:20px;*/
+	left:25%; /*if the caption needs to be aligned from right, specify by right instead of left. i.e. right:20px;*/
 	bottom:10px;/*if the caption needs to be aligned from top, specify by top instead of bottom. i.e. top:150px;*/
 	z-index:3;
 	overflow:hidden;

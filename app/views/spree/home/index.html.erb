@@ -1,11 +1,14 @@
 <div id="sliderFrame">
     <div id="slider">
-        <% @products.each do |product| %>
-            <%= link_to large_image(product, :itemprop => "image"), product, :itemprop => 'url' %>
+        <% @products.each do |slide_image| %>
+            <%= link_to large_image(slide_image, :itemprop => "image"), slide_image, :itemprop => 'url' %>
         <% end %>
     </div>
 </div>
 
 <%= javascript_tag do %>
-    imageSlider.thumbnailPreview(function (thumbIndex) { return ""; });
+    var thumbnails = [<% @products.each do |x| %>
+    <%=raw small_image(x).to_json + "," %> <% end %>];
+
+    imageSlider.thumbnailPreview(function (thumbIndex) { return thumbnails[(thumbIndex)]; });
 <% end %>

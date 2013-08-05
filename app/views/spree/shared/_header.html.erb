@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<%= javascript_tag do %>
     $(document).ready(function(){
 
         $(function(){$("#toggle").hide();})
@@ -7,7 +7,7 @@
         });
 
     });
-</script>
+<% end %>
 
 <header>
     <div class="container-fluid">
@@ -21,7 +21,7 @@
                         reports: spree.admin_reports_path, 
                         configuration: spree.edit_admin_general_settings_path, 
                         news: spree.admin_headlines_path, 
-                        promotionals: spree.admin_promotions_path, 
+                        promotionals: spree.admin_promotions_path,
                         users: spree.admin_users_path}) %>
                 <% end %>
                 <%= dropdown(:account, spree_current_user, 
@@ -41,7 +41,7 @@
           <%= form_tag products_url, method: :get, :class => 'navbar-search' do %>
             <%= search_field_tag "keywords", params[:keywords], id: "toggle", class: "search-query", placeholder: "Search" %>
             <%= image_tag("store/magnifier.png", id: "trigger", alt: "Search")%>
-            <% if !params[:per_page].nil? %>
+            <% unless params[:per_page].nil? %>
                 <%= hidden_field_tag :per_page, params[:per_page] %>
             <% end %>
           <% end %>

@@ -194,6 +194,9 @@ GEM
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
       paper_trail (~> 2)
+    gon (4.1.1)
+      actionpack (>= 2.3.0)
+      json
     haml (4.0.3)
       tilt
     highline (1.6.18)
@@ -342,6 +345,7 @@ DEPENDENCIES
   cucumber-rails (= 1.2.1)
   database_cleaner (= 0.7.0)
   factory_girl_rails (= 4.1.0)
+  gon
   haml
   http_accept_language (~> 2.0.0.pre)
   jquery-rails
