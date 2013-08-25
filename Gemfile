@@ -4,7 +4,7 @@ gem 'rails', '3.2.14'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'spree', github: 'spree/spree', branch: '2-0-stable'
 gem 'spree_auth_devise', :github => 'spree/spree_auth_devise', :branch => '2-0-stable'
-gem 'spree_i18n', github: 'spree/spree_i18n'
+gem 'spree_i18n', github: 'spree/spree_i18n', :branch => '2-0-stable'
 gem 'http_accept_language', '~> 2.0.0.pre'
 gem 'routing-filter'
 
